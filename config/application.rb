@@ -9,6 +9,7 @@ Bundler.require(:default, Rails.env)
 module BillPinClone
   class Application < Rails::Application
 
+    config.assets.paths << "app/assets/templates"
     config.assets.initialize_on_precompile = false
   end
 end

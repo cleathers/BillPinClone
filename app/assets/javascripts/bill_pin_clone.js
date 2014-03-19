@@ -4,10 +4,7 @@ window.BillPinClone = {
   Views: {},
   Routers: {},
   initialize: function() {
-    alert('Hello from Backbone!');
+    console.log('Backbone on');
+
   }
 };
-
-$(document).ready(function(){
-  BillPinClone.initialize();
-});
