@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: splits
+#
+#  id         :integer          not null, primary key
+#  total_amt  :decimal(, )
+#  des        :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 # This model initially had no columns defined.  If you add columns to the

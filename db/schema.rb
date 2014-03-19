@@ -17,18 +17,25 @@ ActiveRecord::Schema.define(version: 20140319180747) do
   enable_extension "plpgsql"
 
   create_table "splits", force: true do |t|
-    t.decimal  "amount"
-    t.integer  "user_id"
-    t.integer  "friend_id"
-    t.integer  "split_id"
-    t.string   "split_type"
+    t.decimal  "total_amt"
+    t.string   "des"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "splits", ["friend_id", "user_id"], name: "index_splits_on_friend_id_and_user_id", using: :btree
-  add_index "splits", ["split_id"], name: "index_splits_on_split_id", using: :btree
-  add_index "splits", ["user_id", "friend_id"], name: "index_splits_on_user_id_and_friend_id", using: :btree
+  create_table "user_splits", force: true do |t|
+    t.decimal  "amt"
+    t.string   "split_type"
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.integer  "split_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_splits", ["friend_id", "user_id"], name: "index_user_splits_on_friend_id_and_user_id", using: :btree
+  add_index "user_splits", ["split_id"], name: "index_user_splits_on_split_id", using: :btree
+  add_index "user_splits", ["user_id", "friend_id"], name: "index_user_splits_on_user_id_and_friend_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

@@ -1,6 +1,7 @@
 class Api::SplitsController < ApplicationController
 
   def create
+
   end
 
   def update
@@ -13,7 +14,11 @@ class Api::SplitsController < ApplicationController
   end
 
   def index
-    @splits = Split.where(user_id: current_user.id)
+    @splits = current_user.splits
   end
 
+  private
+    def split_params
+      params.require(:split).permit(:des, :friends, :amount, :split_type)
+    end
 end

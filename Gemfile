@@ -28,6 +28,7 @@ gem 'backbone-on-rails'
 
 
 group :development do
+  gem 'annotate'
   gem 'awesome_print'
   gem 'better_errors'
   gem 'binding_of_caller'
