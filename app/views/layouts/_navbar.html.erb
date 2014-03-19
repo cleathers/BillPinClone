@@ -23,18 +23,23 @@
           <button class='btn btn-brown'>Sign Out</button> 
         </form>
       <% else %>
+        <%= render partial: 'layouts/guest_user' %>
         <div class='navbar-form navbar-right'>
+
           <button class='btn btn-brown' data-toggle='modal' 
                   data-target='#log-in-modal'>Log In</button> 
-          <%= render partial: 'layouts/log_in_modal' %>
 
           <button class='btn btn-brown' data-toggle='modal'
                   data-target='#sign-up-modal'>Sign Up</button>
-          <%= render partial: 'layouts/sign_up_modal' %>
+
         </div>
       <% end %>
 
     </div><!-- /.collapse.navbar-collapse -->
   </div><!-- /.container-fluid -->
+
+  <!-- modal partials -->
+  <%= render partial: 'layouts/sign_up_modal' %>
+  <%= render partial: 'layouts/log_in_modal' %>
 
 </nav>
