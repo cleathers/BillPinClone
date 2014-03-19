@@ -1,3 +1,3 @@
 BillPinClone::Application.routes.draw do
-  root to: 'landing#index'
+  root to: 'landings#index'
 end
