@@ -20,6 +20,7 @@ test:
 
 production:
   adapter: postgresql
-  database: bill_pin_clone_production
-  host: localhost
-  username: charlieleathers
+  database: df9ou83ddcce28
+  host: ec2-174-129-21-42.compute-1.amazonaws.com
+  username: ewuuhduaillvhm
+  port: 5432
