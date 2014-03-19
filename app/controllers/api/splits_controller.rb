@@ -1,4 +1,5 @@
 class Api::SplitsController < ApplicationController
+  before_filter :logged_in?
 
   def create
     # creates new split object
@@ -14,7 +15,6 @@ class Api::SplitsController < ApplicationController
     current_user_split = UserSplit.new()
 
     current_user_split.amt = split_params['user_amt']
-    current_user_split.split_id = new_split['id']
     current_user_split.split_type = split_params['split_type']
     current_user_split.user_id = current_user.id
 
@@ -24,6 +24,7 @@ class Api::SplitsController < ApplicationController
       ActiveRecord::Base.transaction do
         # creates Split
         new_split.save!
+        current_user_split.split_id = new_split['id']
         
         # creates User_split for each friend and many for current_user
         friend_params.each do |friend|
@@ -59,6 +60,7 @@ class Api::SplitsController < ApplicationController
   end
 
   def index
+    p current_user.user_splits
     @splits = current_user.user_splits
   end
 
@@ -70,4 +72,12 @@ class Api::SplitsController < ApplicationController
     def friend_params
       params.permit(:friends => [:amt, :id]).require(:friends)
     end
+
+    def logged_in?
+      if !current_user
+        redirect_to root_url
+        return
+      end
+    end
+
 end

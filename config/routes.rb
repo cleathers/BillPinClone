@@ -5,8 +5,8 @@ BillPinClone::Application.routes.draw do
   # Route for Guest user
   post '/users/guest', to: 'application#current_or_guest_user'
 
-  namespace :api, defaults: { format: 'json' } do
-    resources :splits
+  namespace :api do
+    resources :splits, defaults: { format: 'json' }
   end
 
 end

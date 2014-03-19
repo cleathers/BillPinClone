@@ -1,1 +1,1 @@
-json.(@splits)
+json.array!(@splits)
