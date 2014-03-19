@@ -1,0 +1,39 @@
+.icon-white {
+  color: white;
+}
+
+.form-control:focus {
+  border-color: rgb(221, 115, 66);
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(248, 202, 103, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(236, 193, 104, 0.6);
+};
+
+.navbar-default {
+  background-color: rgb(221, 115, 66);
+}
+.navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > li > a.active:hover {
+  color: rgb(124, 60, 44);
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a.active {
+  color: white;
+}
+
+.btn-brown {
+  background-color: rgb(124, 60, 44);
+  border-color: rgb(122, 55, 40);
+  color: white;
+}
+
+.btn-orange {
+  background-color: rgb(221, 115, 66);
+  border-color: rgb(214, 108, 61);
+  color: white;
+}
+
+.modal-header {
+  background-color: rgb(221, 115, 66);
+  border-radius: 3px 3px 0 0;
+}
+
+
