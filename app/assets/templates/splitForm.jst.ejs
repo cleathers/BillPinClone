@@ -1,0 +1,23 @@
+<form class='form-inline'>
+  <div class='form-group'>
+      <label class='sr-only'> Who Paid?</label>
+      <input value='Me' name='split[split_type]'
+             type='text' class='form-control' placeholder='Who Paid?'>
+  </div>  
+
+  <div class='form-group'>
+      <label class='sr-only'>How Much?</label>
+      <input name='split[amt]'  id='split-amt'
+             type='text' class='form-control' placeholder='How Much?'>
+  </div>  
+
+  <div class='form-group'>
+      <label class='sr-only'>Description</label>
+      <input name='split[des]' id='split-des'
+             type='text' class='form-control' placeholder='Description'>
+  </div>
+
+  <button type='submit' class='btn btn-orange'>Pin it</button>
+</form>
+<div id='split-amt-prev'></div>
+<div id='split-des-prev'></div>
