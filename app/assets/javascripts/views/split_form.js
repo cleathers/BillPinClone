@@ -4,9 +4,22 @@ BillPinClone.Views.SplitForm = Backbone.View.extend({
     'id': 'split-form'
   },
 
+  template: JST['splitForm'],
+
   events: {
     'keyup #split-amt': 'handleKeyup', 
-    'keyup #split-des': 'handleKeyup'
+    'keyup #split-des': 'handleKeyup',
+    'submit form': 'buildSplit'
+  },
+
+  buildSplit: function (event) {
+    event.preventDefault();
+    var formData = $(event.target).serializeJSON();
+    
+    debugger
+
+    BillPinClone.splits.create(formData);
+
   },
 
   handleKeyup: function (event) {
@@ -17,10 +30,11 @@ BillPinClone.Views.SplitForm = Backbone.View.extend({
     $(preview).html(input.value);
   },
 
-  template: JST['splitForm'],
 
   render: function () {
-    this.$el.html(this.template());
+    this.$el.html(this.template({
+      users: BillPinClone.friends
+    }));
     return this;
   }
 

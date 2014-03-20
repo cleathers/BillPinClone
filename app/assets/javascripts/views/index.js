@@ -1,7 +1,7 @@
-BillPinClone.Views.Index = Backbone.View.extend({
+BillPinClone.Views.Index = Backbone.CompositeView.extend({
   
   initialize: function (options) {
-    this.listenTo(this.collection, 'sync', this.render);
+    this.listenTo(BillPinClone.splits, 'sync', this.render);
   },
 
   template: JST['index'],
@@ -22,6 +22,7 @@ BillPinClone.Views.Index = Backbone.View.extend({
     });
 
     view.$el.html(renderedContent);
+    view.renderSubviews();
     return view;
   }
 });

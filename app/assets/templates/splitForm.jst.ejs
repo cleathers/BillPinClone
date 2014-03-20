@@ -5,6 +5,16 @@
              type='text' class='form-control' placeholder='Who Paid?'>
   </div>  
 
+  <% if (users) { %>
+    <div class='form-group'>
+      <select name='split[friends][0]' class='form-control'>
+        <% users.each(function (user) { %>
+          <option value='<%= user.get('id') %>'><%= user.get('email') %></option>
+        <% }); %>
+      </select>
+    </div>
+  <% } %>
+
   <div class='form-group'>
       <label class='sr-only'>How Much?</label>
       <input name='split[amt]'  id='split-amt'
@@ -19,5 +29,5 @@
 
   <button type='submit' class='btn btn-orange'>Pin it</button>
 </form>
-<div id='split-amt-prev'></div>
-<div id='split-des-prev'></div>
+<p id='split-amt-prev'></p>
+<p id='split-des-prev'></p>

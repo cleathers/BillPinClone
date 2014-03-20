@@ -66,18 +66,10 @@ class Api::SplitsController < ApplicationController
 
   private
     def split_params
-      params.permit(:des, :user_amt, :amt, :split_type)
+      params.require(:split).permit(:des, :user_amt, :amt, :split_type)
     end
 
     def friend_params
       params.permit(:friends => [:amt, :id]).require(:friends)
     end
-
-    def logged_in?
-      if !current_user
-        redirect_to root_url
-        return
-      end
-    end
-
 end

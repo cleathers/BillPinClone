@@ -5,10 +5,13 @@ window.BillPinClone = {
   Routers: {},
   initialize: function() {
     BillPinClone.splits = new BillPinClone.Collections.Splits();
+    BillPinClone.friends = new BillPinClone.Collections.Friends();
+
+    BillPinClone.friends.fetch();
     BillPinClone.splits.fetch({
       success: function () {
         new BillPinClone.Routers.AppRouter({
-          $rootEl: $("#content")
+          $rootEl: $("#app")
         });
       Backbone.history.start();
       }

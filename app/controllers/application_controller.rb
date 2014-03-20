@@ -26,6 +26,13 @@ class ApplicationController < ActionController::Base
       guest_user
   end
 
+  def logged_in?
+    if !current_user
+      redirect_to root_url
+      return
+    end
+  end
+
   private
 
   def create_guest_user

@@ -9,16 +9,10 @@ BillPinClone.Routers.AppRouter = Backbone.Router.extend({
   },
 
   index: function() {
-    console.log('in index');
-    var indexView = new BillPinClone.Views.Index({
-      collection: BillPinClone.splits
-
-    });
+    var indexView = new BillPinClone.Views.Index();
+    indexView.addSubview('#quickForm', new BillPinClone.Views.SplitForm());
+    indexView.addSubview('#content', new BillPinClone.Views.FriendSummaries());
     this._swapViews(indexView);
-    var splitForm = new BillPinClone.Views.SplitForm({
-      collection: BillPinClone.splits
-    });
-    this.$rootEl.append(splitForm.render().$el);
   },
   
 

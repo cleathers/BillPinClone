@@ -7,6 +7,7 @@ BillPinClone::Application.routes.draw do
 
   namespace :api do
     resources :splits, defaults: { format: 'json' }
+    get '/users', to: 'users#index'
   end
 
 end
