@@ -5,7 +5,8 @@ BillPinClone.Views.SplitForm = Backbone.View.extend({
   },
 
   events: {
-    'keyup input': 'handleKeyup' 
+    'keyup #split-amt': 'handleKeyup', 
+    'keyup #split-des': 'handleKeyup'
   },
 
   handleKeyup: function (event) {
