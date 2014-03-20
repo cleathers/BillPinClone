@@ -3,11 +3,16 @@ window.BillPinClone = {
   Collections: {},
   Views: {},
   Routers: {},
-  initialize: function() {
+  initialize: function(options) {
     BillPinClone.splits = new BillPinClone.Collections.Splits();
     BillPinClone.friends = new BillPinClone.Collections.Friends();
 
-    BillPinClone.friends.fetch();
+    BillPinClone.friends.fetch({
+      success: function (col) {
+        BillPinClone.current_user = col.get(options['current_user_id']);
+      }
+    });
+
     BillPinClone.splits.fetch({
       success: function () {
         new BillPinClone.Routers.AppRouter({

@@ -2,20 +2,27 @@ class Api::SplitsController < ApplicationController
   before_filter :logged_in?
 
   def create
+    p "CURRENT_USER #{current_user.email}"
     # creates new split object
     new_split = Split.new()
 
-    p split_params
-    p friend_params
+    friends = split_params['friends']
+    payer = split_params['payer']
 
+    # splits total evenly across all friends
     new_split.total_amt = split_params['amt']
+    split_amt = new_split.total_amt / friends.length
+
+
     new_split.des = split_params['des']
 
     # creates usersplit for current User
     current_user_split = UserSplit.new()
+    (payer != current_user.id) ? current_user_split.split_type = 'negative' :
+                                 current_user_split.split_type = 'positive'
 
-    current_user_split.amt = split_params['user_amt']
-    current_user_split.split_type = split_params['split_type']
+
+    current_user_split.amt = split_amt
     current_user_split.user_id = current_user.id
 
     friend_split_type = (split_params['split_type'] == 'positive') ? 'negative' : 'positive'
@@ -27,16 +34,16 @@ class Api::SplitsController < ApplicationController
         current_user_split.split_id = new_split['id']
         
         # creates User_split for each friend and many for current_user
-        friend_params.each do |friend|
+        friends.each do |friend|
           friend_split = UserSplit.new()
           
-          friend_split.amt = friend['amt']
+          friend_split.amt = split_amt
           friend_split.friend_id = current_user.id
           friend_split.split_id = new_split['id']
           friend_split.split_type = friend_split_type
-          friend_split.user_id = friend['id']
+          friend_split.user_id = friend
 
-          current_user_split.friend_id = friend['id']
+          current_user_split.friend_id = friend
           
           friend_split.save!
           current_user_split.save!
@@ -47,7 +54,7 @@ class Api::SplitsController < ApplicationController
       p 'ERROR ERROR ERROR IN API/SPLITS CONTROLLER # CREATE'
     end
 
-    head :ok
+    render :json => current_user_split
   end
 
   def update
@@ -66,10 +73,7 @@ class Api::SplitsController < ApplicationController
 
   private
     def split_params
-      params.require(:split).permit(:des, :user_amt, :amt, :split_type)
-    end
-
-    def friend_params
-      params.permit(:friends => [:amt, :id]).require(:friends)
+      params.permit(:des, :user_amt, :amt, :split_type, :payer, 
+                                    friends: [])
     end
 end

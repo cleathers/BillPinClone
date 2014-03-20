@@ -1,19 +1,19 @@
 <form class='form-inline'>
   <div class='form-group'>
-      <label class='sr-only'> Who Paid?</label>
-      <input value='Me' name='split[split_type]'
-             type='text' class='form-control' placeholder='Who Paid?'>
-  </div>  
-
-  <% if (users) { %>
-    <div class='form-group'>
+    <label>Who paid?</label>
+      <select name='split[payer]' class='form-control'>
+        <% users.each(function (user) { %>
+          <option value='<%= user.get('id') %>'><%= user.get('email') %></option>
+        <% }); %>
+      </select>
+    <label>Who was there?</label>
       <select name='split[friends][0]' class='form-control'>
         <% users.each(function (user) { %>
           <option value='<%= user.get('id') %>'><%= user.get('email') %></option>
         <% }); %>
       </select>
-    </div>
-  <% } %>
+    </label>
+  </div>
 
   <div class='form-group'>
       <label class='sr-only'>How Much?</label>

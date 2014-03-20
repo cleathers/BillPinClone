@@ -1,17 +1,23 @@
-<% if (positives) { %>
-  <% _.each(positives, function(split) { %>
-    
-    <p><%= split.escape('user_id') %></p>
-    <p><%= split.escape('amt') %></p>
-    
-  <% }); %>
+<% if (!(positives.length == 0)) { %>
+  These peeps owe me
+  <table>
+    <% _.each(positives, function(split) { %>
+      <tr>
+        <td><%= users.get(split.get('user_id')).escape('email')  %></td>
+        <td><%= split.escape('amt') %></td>
+      </tr>
+    <% }); %>
+  </table>
 <% } %>
 
-<% if (negatives) { %>
+<% if (!(negatives.length == 0)) { %>
+  I owe these people
+  <table>
   <% _.each(negatives, function(split) { %>
-    
-    <p><%= split.escape('user_id') %></p>
-    <p><%= split.escape('amt') %></p>
-    
-  <% }); %>
+      <tr>
+        <td><%= users.get(split.get('user_id')).escape('email')  %></td>
+        <td><%= split.escape('amt') %></td>
+      </tr>
+    <% }); %>
+  </table>
 <% } %>

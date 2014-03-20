@@ -14,12 +14,10 @@ BillPinClone.Views.SplitForm = Backbone.View.extend({
 
   buildSplit: function (event) {
     event.preventDefault();
-    var formData = $(event.target).serializeJSON();
+    var formData = $(event.target).serializeJSON().split;
     
-    debugger
 
-    BillPinClone.splits.create(formData);
-
+    BillPinClone.splits.create(formData, {wait: true});
   },
 
   handleKeyup: function (event) {
