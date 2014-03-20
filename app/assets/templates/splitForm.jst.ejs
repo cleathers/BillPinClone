@@ -7,7 +7,7 @@
         <% }); %>
       </select>
     <label>Who was there?</label>
-      <select name='split[friends][0]' class='form-control'>
+      <select name='split[borrowers][0]' class='form-control'>
         <% users.each(function (user) { %>
           <option value='<%= user.get('id') %>'><%= user.get('email') %></option>
         <% }); %>

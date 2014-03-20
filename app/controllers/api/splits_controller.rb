@@ -5,56 +5,62 @@ class Api::SplitsController < ApplicationController
     p "CURRENT_USER #{current_user.email}"
     # creates new split object
     new_split = Split.new()
-
-    friends = split_params['friends']
-    payer = split_params['payer']
-
-    # splits total evenly across all friends
-    new_split.total_amt = split_params['amt']
-    split_amt = new_split.total_amt / friends.length
-
-
     new_split.des = split_params['des']
+    new_split.total_amt = split_params['amt']
 
-    # creates usersplit for current User
-    current_user_split = UserSplit.new()
-    (payer != current_user.id) ? current_user_split.split_type = 'negative' :
-                                 current_user_split.split_type = 'positive'
+    # IDs of users
+    borrowers = split_params['borrowers']
+    payer = split_params['payer']
+    # splits total evenly across all friends
+    split_amt = new_split.total_amt / borrowers.length
 
 
-    current_user_split.amt = split_amt
-    current_user_split.user_id = current_user.id
+    # creates usersplit for payer
+    payer_split = UserSplit.new()
+    payer_split.split_type = 'positive'
+    payer_split.amt = split_amt
+    payer_split.user_id = payer
 
-    friend_split_type = (split_params['split_type'] == 'positive') ? 'negative' : 'positive'
+    
 
     begin
       ActiveRecord::Base.transaction do
         # creates Split
         new_split.save!
-        current_user_split.split_id = new_split['id']
+        payer_split.split_id = new_split['id']
         
         # creates User_split for each friend and many for current_user
-        friends.each do |friend|
-          friend_split = UserSplit.new()
+        borrowers.each do |borrower|
+          borrower_split = UserSplit.new()
           
-          friend_split.amt = split_amt
-          friend_split.friend_id = current_user.id
-          friend_split.split_id = new_split['id']
-          friend_split.split_type = friend_split_type
-          friend_split.user_id = friend
+          borrower_split.amt = split_amt
+          borrower_split.friend_id = payer_split.id
+          borrower_split.split_id = new_split['id']
+          borrower_split.split_type = 'negative'
+          borrower_split.user_id = borrower
 
-          current_user_split.friend_id = friend
+          payer_split.friend_id = borrower
           
-          friend_split.save!
-          current_user_split.save!
+          if (borrower == current_user.id)
+            p "BORROWER IS CURRENT USER!"
+            return_obj = borrower_split
+          end
+
+          borrower_split.save!
+          payer_split.save!
         end
       end # end transaction
     
     rescue ActiveRecord::RecordInvalid => invalid
       p 'ERROR ERROR ERROR IN API/SPLITS CONTROLLER # CREATE'
     end
+    
+    p payer_split
+#    if return_obj.exists? && payer_split.id == current_user.id
+#      return_obj = payer_split
+#    end
 
-    render :json => current_user_split
+    render :json => payer_split 
   end
 
   def update
@@ -67,13 +73,12 @@ class Api::SplitsController < ApplicationController
   end
 
   def index
-    p current_user.user_splits
-    @splits = current_user.user_splits
+    @splits = UserSplit.where("friend_id = ? OR user_id = ?", current_user.id, current_user.id)
   end
 
   private
     def split_params
-      params.permit(:des, :user_amt, :amt, :split_type, :payer, 
-                                    friends: [])
+      params.permit(:des, :user_amt, :amt, :payer, 
+                                    borrowers: [])
     end
 end

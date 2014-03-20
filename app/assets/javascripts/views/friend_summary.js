@@ -12,7 +12,9 @@ BillPinClone.Views.FriendSummaries = Backbone.View.extend({
         negatives = [];
     
     BillPinClone.splits.each(function (split) {
-      (split.amt >= 0) ? positives.push(split) : negatives.push(split);
+      if (split.get('user_id') != BillPinClone.current_user.id){
+        (split.amt >= 0) ? positives.push(split) : negatives.push(split);
+      }
     });
     
     var renderedContent = view.template({
