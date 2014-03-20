@@ -4,11 +4,14 @@ window.BillPinClone = {
   Views: {},
   Routers: {},
   initialize: function() {
-    console.log('Backbone on');
     BillPinClone.splits = new BillPinClone.Collections.Splits();
-    new BillPinClone.Routers.AppRouter({
-      $rootEl: $("#content")
+    BillPinClone.splits.fetch({
+      success: function () {
+        new BillPinClone.Routers.AppRouter({
+          $rootEl: $("#content")
+        });
+      Backbone.history.start();
+      }
     });
-    Backbone.history.start();
   }
 };

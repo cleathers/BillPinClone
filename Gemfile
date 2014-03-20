@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 1.2'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'backbone-on-rails'
+gem 'ejs'
 
 
 group :development do

@@ -8,7 +8,16 @@ BillPinClone.Views.Index = Backbone.View.extend({
 
   render: function () {
     var view = this;
+    var positives = [],
+        negatives = [];
+    
+    BillPinClone.splits.each(function(split) {
+                (split.amt >= 0) ? positives.push(split) : negatives.push(split); 
+    });
+
     var renderedContent = view.template({
+      positives: positives,
+      negatives: negatives,
       splits: this.collection
     });
 

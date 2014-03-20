@@ -1,0 +1,19 @@
+<h3>Backbone Index</h3>
+
+<% if (positives) { %>
+  <% _.each(positives, function(split) { %>
+    
+    <p><%= split.escape('user_id') %></p>
+    <p><%= split.escape('amt') %></p>
+    
+  <% }); %>
+<% } %>
+
+<% if (negatives) { %>
+  <% _.each(negatives, function(split) { %>
+    
+    <p><%= split.escape('user_id') %></p>
+    <p><%= split.escape('amt') %></p>
+    
+  <% }); %>
+<% } %>
