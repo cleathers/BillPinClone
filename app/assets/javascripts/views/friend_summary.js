@@ -12,8 +12,13 @@ BillPinClone.Views.FriendSummaries = Backbone.View.extend({
         negatives = [];
     
     BillPinClone.splits.each(function (split) {
-      if (split.get('user_id') != BillPinClone.current_user.id){
-        (split.amt >= 0) ? positives.push(split) : negatives.push(split);
+      debugger
+      if (split.get('split_type') == 'positive' &&
+              split.get('friend_id') == BillPinClone.current_user.get('id')){
+        negatives.push(split);
+      } else if (split.get('split_type') == 'negative' &&
+              split.get('friend_id') == BillPinClone.current_user.get('id')){
+        positives.push(split);  
       }
     });
     

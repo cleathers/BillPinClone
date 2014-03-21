@@ -7,13 +7,15 @@ class Api::SplitsController < ApplicationController
     new_split = Split.new()
     new_split.des = split_params['des']
     new_split.total_amt = split_params['amt']
+    # setting blank obj for return model
+    return_obj = nil    
 
+    debugger
     # IDs of users
     borrowers = split_params['borrowers']
     payer = split_params['payer']
     # splits total evenly across all friends
     split_amt = new_split.total_amt / borrowers.length
-
 
     # creates usersplit for payer
     payer_split = UserSplit.new()
@@ -21,7 +23,6 @@ class Api::SplitsController < ApplicationController
     payer_split.amt = split_amt
     payer_split.user_id = payer
 
-    
 
     begin
       ActiveRecord::Base.transaction do
@@ -34,14 +35,14 @@ class Api::SplitsController < ApplicationController
           borrower_split = UserSplit.new()
           
           borrower_split.amt = split_amt
-          borrower_split.friend_id = payer_split.id
+          borrower_split.friend_id = payer_split.user_id
           borrower_split.split_id = new_split['id']
           borrower_split.split_type = 'negative'
           borrower_split.user_id = borrower
 
           payer_split.friend_id = borrower
           
-          if (borrower == current_user.id)
+          if (borrower.to_i == current_user.id)
             p "BORROWER IS CURRENT USER!"
             return_obj = borrower_split
           end
@@ -55,12 +56,11 @@ class Api::SplitsController < ApplicationController
       p 'ERROR ERROR ERROR IN API/SPLITS CONTROLLER # CREATE'
     end
     
-    p payer_split
-#    if return_obj.exists? && payer_split.id == current_user.id
-#      return_obj = payer_split
-#    end
+    if return_obj.nil? && payer_split.user_id == current_user.id
+      return_obj = payer_split
+    end
 
-    render :json => payer_split 
+    render :json => return_obj
   end
 
   def update
