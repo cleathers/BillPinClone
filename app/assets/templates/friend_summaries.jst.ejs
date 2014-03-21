@@ -1,6 +1,6 @@
 <% if (!(_.isEmpty(positives))) { %>
   These peeps owe me
-  <table>
+  <table class="table table-striped">
     <% _.each(positives, function(amt, user_id) { %>
       <tr>
         <td><%= users.get(user_id).escape('email')  %></td>
@@ -12,7 +12,7 @@
 
 <% if (!(_.isEmpty(negatives))) { %>
   I owe these people
-  <table>
+  <table class="table table-striped">
   <% _.each(negatives, function(amt, user_id) { %>
       <tr>
         <td><%= users.get(user_id).escape('email')  %></td>

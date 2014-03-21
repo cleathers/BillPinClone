@@ -25,6 +25,12 @@
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(236, 193, 104, 0.6);
 };
 
+.quick-form {
+  background-color: rgb(111, 193, 216);
+  padding: 10px;
+  border-radius: 3px 3px 0 0;
+}
+
 // MODALS
 .modal-header {
   background-color: rgb(221, 115, 66);
@@ -54,5 +60,7 @@
 }
 
 
-
-
+// TABLES
+#content tr:hover > td{
+  background-color: rgb(251, 234, 222);
+}
