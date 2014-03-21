@@ -1,0 +1,31 @@
+<h3><%= friend.escape('email') %></h3>
+<% if (total > 0) { %>
+  <p>owes you <%= total %></p>
+<% } else if (total < 0 ) { %>
+  <p>you owe <%= total * -1 %></p>
+<% } else { %>
+  <p>You two are even as a well built floor</p>
+<% } %>
+
+<% if (!(_.isEmpty(splits))) { %>
+  <table class=" table table-striped table-history">
+    <tr>
+      <th>Amount</th>
+      <th>For</th>
+      <th>On</th>
+    </tr>
+    <% _.each(splits, function (split) { %>
+      <tr>
+      
+        <td class="<%= split.get('split_type') %>"><%= split.get('amt') %></td>
+        <td><%= histories.get(split.get('split_id')).escape('des') %></td>
+        <td><%= split.get('created_at') %></td>
+      </tr>
+    <% }); %>
+
+  </table>
+<% } else { %>
+  <p>You ain't got no transactions</p>
+<% } %>
+https://app.billpin.com/d/user/NotpKU90Hp/transaction/K5VahxjDc4
+https://app.billpin.com/d/user/ZtDSaUpyfZ/transaction/RDi786PZJO

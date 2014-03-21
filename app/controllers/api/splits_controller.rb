@@ -22,7 +22,6 @@ class Api::SplitsController < ApplicationController
     payer_split.amt = split_amt
     payer_split.user_id = payer
 
-
     begin
       ActiveRecord::Base.transaction do
         # creates Split
@@ -40,7 +39,6 @@ class Api::SplitsController < ApplicationController
           borrower_split.user_id = borrower
 
           payer_split.friend_id = borrower
-          
 
           borrower_split.save!
           payer_split.save!

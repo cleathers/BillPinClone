@@ -6,12 +6,15 @@ BillPinClone.Views.FriendSummaries = Backbone.View.extend({
     this.negatives = {};
   },
 
+  events: {
+    'click tr': 'routeToUser'
+  },
+
   template: JST['friend_summaries'],
 
 
   render: function () {
     var view = this;
-    debugger
     this.posOrNeg();
     
     var renderedContent = view.template({
@@ -23,6 +26,12 @@ BillPinClone.Views.FriendSummaries = Backbone.View.extend({
 
     view.$el.html(renderedContent);
     return view;
+  },
+
+  routeToUser: function (event) {
+    var userId = event.currentTarget.dataset.userId;
+    var route = 'user/' + userId;
+    Backbone.history.navigate(route, {trigger: true});
   },
 
   posOrNeg: function () {

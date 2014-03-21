@@ -61,6 +61,6 @@
 
 
 // TABLES
-#content tr:hover > td{
+.table-history tr:hover > td:nth-child(1n){
   background-color: rgb(251, 234, 222);
 }
