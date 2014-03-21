@@ -18,6 +18,14 @@ BillPinClone.Views.SplitForm = Backbone.View.extend({
     
 
     BillPinClone.splits.create(formData, {wait: true});
+    BillPinClone.splits.fetch({
+      success: function () {
+        console.log('sucessful callback');
+      },
+      error: function () {
+        console.log('error callback');
+      }
+    });
   },
 
   handleKeyup: function (event) {

@@ -1,7 +1,7 @@
 BillPinClone.Views.FriendSummaries = Backbone.View.extend({
 
   initialize: function (options) {
-    this.listenTo(BillPinClone.splits, 'add', this.render);
+    this.listenTo(BillPinClone.splits, 'sync add', this.render);
     this.positives = {};
     this.negatives = {};
   },
@@ -11,6 +11,7 @@ BillPinClone.Views.FriendSummaries = Backbone.View.extend({
 
   render: function () {
     var view = this;
+    debugger
     this.posOrNeg();
     
     var renderedContent = view.template({
