@@ -1,4 +1,4 @@
-<% if (!(positives.length == 0)) { %>
+<% if (!(_.isEmpty(positives))) { %>
   These peeps owe me
   <table>
     <% _.each(positives, function(amt, user_id) { %>
@@ -10,7 +10,7 @@
   </table>
 <% } %>
 
-<% if (!(negatives.length == 0)) { %>
+<% if (!(_.isEmpty(negatives))) { %>
   I owe these people
   <table>
   <% _.each(negatives, function(amt, user_id) { %>
