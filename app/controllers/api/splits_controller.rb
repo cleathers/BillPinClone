@@ -10,7 +10,6 @@ class Api::SplitsController < ApplicationController
     # setting blank obj for return model
     return_obj = nil    
 
-    debugger
     # IDs of users
     borrowers = split_params['borrowers']
     payer = split_params['payer']
@@ -42,13 +41,14 @@ class Api::SplitsController < ApplicationController
 
           payer_split.friend_id = borrower
           
+
+          borrower_split.save!
+          payer_split.save!
+
           if (borrower.to_i == current_user.id)
             p "BORROWER IS CURRENT USER!"
             return_obj = borrower_split
           end
-
-          borrower_split.save!
-          payer_split.save!
         end
       end # end transaction
     
