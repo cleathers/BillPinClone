@@ -17,7 +17,6 @@
 }
 
 // FORMS 
-
 .form-control:focus {
   border-color: rgb(221, 115, 66);
   outline: 0;
@@ -61,6 +60,15 @@
 
 
 // TABLES
-.table-history tr:hover > td:nth-child(1n){
+.table-history tr:hover > td:nth-child(1n) {
   background-color: rgb(251, 234, 222);
+}
+
+// TEXT STYLES
+.positive {
+  color: rgb(24, 148, 144);
+}
+
+.negative {
+  color: rgb(230, 152, 48);
 }

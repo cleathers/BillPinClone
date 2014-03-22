@@ -19,7 +19,9 @@ BillPinClone.Views.FriendSummaries = Backbone.View.extend({
     
     var renderedContent = view.template({
       positives: view.positives,
+      posSum: view.posSum(),
       negatives: view.negatives,
+      negSum: view.negSum(),
       splits: BillPinClone.splits,
       users: BillPinClone.friends
     });
@@ -28,6 +30,22 @@ BillPinClone.Views.FriendSummaries = Backbone.View.extend({
     return view;
   },
 
+  posSum: function () {
+    var sum = 0;
+    debugger
+    _.values(this.positives).forEach(function (num) {
+      sum += parseInt(num);
+    });
+    return sum;
+  },
+
+  negSum: function () {
+    var sum = 0;
+    _.values(this.negatives).forEach(function (num) {
+      sum += parseInt(num);
+    });
+    return sum;
+  },
 
   posOrNeg: function () {
     var view = this;

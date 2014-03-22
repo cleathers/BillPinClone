@@ -1,22 +1,28 @@
 <% if (!(_.isEmpty(positives))) { %>
-  These peeps owe me
   <table class="table table-striped table-history">
+    <tr>
+      <th class='positive'>FRIENDS OWE ME</th>
+      <th class='positive'>$<%= posSum %>.00</th>
+    </tr>
     <% _.each(positives, function(amt, user_id) { %>
       <tr data-user-id='<%= user_id %>'>
         <td><%= users.get(user_id).escape('email')  %></td>
-        <td><%= amt %></td></a>
+        <td>$<%= amt %>.00</td>
       </tr>
     <% }); %>
   </table>
 <% } %>
 
 <% if (!(_.isEmpty(negatives))) { %>
-  I owe these people
   <table class="table table-striped table-history">
+    <tr>
+      <th class='negative'>I OWE FRIENDS</th>
+      <th class='negative'>$<%= negSum %>.00</th>
+    </tr>
   <% _.each(negatives, function(amt, user_id) { %>
       <tr data-user-id='<%= user_id %>'>
         <td><%= users.get(user_id).escape('email')  %></td>
-        <td><%= amt %></td>
+        <td>$<%= amt %>.00</td>
       </tr>
     <% }); %>
   </table>
