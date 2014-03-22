@@ -1,7 +1,13 @@
 <% if notice %>
-  <div class='alert alert-success'><%= notice %></div>
+  <div class='alert alert-success'>
+    <%= notice %>
+    <button type='button' class='close'>&times;</button>
+  </div>
 <% end %>
 
 <% if alert %>
-<div class='alert alert-danger'><%= alert %></div>
+<div class='alert alert-danger'>
+  <%= alert %>
+  <button type='button' class='close'>&times;</button>
+</div>
 <% end %>

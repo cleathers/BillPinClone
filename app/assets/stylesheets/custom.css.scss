@@ -1,13 +1,18 @@
+// VARIABLES
+$orange: rgb(221,115,66);
+$brown: rgb(124, 60, 44);
+$teal: rgb(111, 193, 216);
+
 
 // BUTTONS
 .btn-brown {
-  background-color: rgb(124, 60, 44);
+  background-color: $brown;
   border-color: rgb(122, 55, 40);
   color: white;
 }
 
 .btn-orange {
-  background-color: rgb(221, 115, 66);
+  background-color: $orange;
   border-color: rgb(214, 108, 61);
   color: white;
 }
@@ -18,21 +23,21 @@
 
 // FORMS 
 .form-control:focus {
-  border-color: rgb(221, 115, 66);
+  border-color: $orange;
   outline: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(248, 202, 103, 0.6);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(236, 193, 104, 0.6);
 };
 
 .quick-form {
-  background-color: rgb(111, 193, 216);
+  background-color: $teal;
   padding: 10px;
   border-radius: 3px 3px 0 0;
 }
 
 // MODALS
 .modal-header {
-  background-color: rgb(221, 115, 66);
+  background-color: $orange;
   border-radius: 3px 3px 0 0;
 }
 
@@ -42,11 +47,11 @@
 }
 
 .navbar-default {
-  background-color: rgb(221, 115, 66);
+  background-color: $orange;
 }
 
 .navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > li > a.active:hover {
-  color: rgb(124, 60, 44);
+  color: $brown;
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a.active {

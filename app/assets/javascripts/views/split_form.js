@@ -9,6 +9,7 @@ BillPinClone.Views.SplitForm = Backbone.View.extend({
   events: {
     'keyup #split-amt': 'handleKeyup', 
     'keyup #split-des': 'handleKeyup',
+
     'submit form': 'buildSplit'
   },
 
@@ -18,14 +19,8 @@ BillPinClone.Views.SplitForm = Backbone.View.extend({
     
 
     BillPinClone.splits.create(formData, {wait: true});
-    BillPinClone.splits.fetch({
-      success: function () {
-        console.log('sucessful callback');
-      },
-      error: function () {
-        console.log('error callback');
-      }
-    });
+    // run a fetch so the other page updates. ^^create should've triggered it though
+    BillPinClone.splits.fetch();
   },
 
   handleKeyup: function (event) {

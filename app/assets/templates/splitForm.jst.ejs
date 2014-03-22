@@ -1,11 +1,10 @@
 <form class='form-inline quick-form'>
   <div class='form-group'>
-    <label>Who paid?</label>
-      <select name='split[payer]' class='form-control col-xs-2'>
-        <% users.each(function (user) { %>
-          <option value='<%= user.get('id') %>'><%= user.get('email') %></option>
-        <% }); %>
-      </select>
+    <select name='split[payer]' class='form-control col-xs-2'>
+      <% users.each(function (user) { %>
+        <option value='<%= user.get('id') %>'><%= user.get('email') %></option>
+      <% }); %>
+    </select>
     <label>Who was there?</label>
       <select name='split[borrowers][0]' class='form-control col-xs-2'>
         <% users.each(function (user) { %>
