@@ -17,7 +17,6 @@ BillPinClone.Routers.AppRouter = Backbone.Router.extend({
   index: function() {
     var indexView = new BillPinClone.Views.Index();
     indexView.addSubview('#quickForm', new BillPinClone.Views.SplitForm());
-    indexView.addSubview('#content', new BillPinClone.Views.FriendSummaries());
     this._swapViews(indexView);
   },
 

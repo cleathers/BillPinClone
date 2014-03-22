@@ -32,7 +32,6 @@ BillPinClone.Views.FriendSummaries = Backbone.View.extend({
 
   posSum: function () {
     var sum = 0;
-    debugger
     _.values(this.positives).forEach(function (num) {
       sum += parseInt(num);
     });
