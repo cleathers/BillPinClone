@@ -1,0 +1,22 @@
+<div class="jumbotron col-xs-8 col-xs-offset-2">
+  <% _.each(user_splits, function(split) { %>
+    <div class='row'>
+      <div class='col-xs-6'>
+        <p><%= BillPinClone.friends.get(split.get('user_id')).escape('email') %></p>
+      </div>
+      <div class='col-xs-6'>
+        <p><%= split.get('amt') %></p>
+      </div>
+    </div>
+  <% }); %>
+  <div class='row'>
+      <div class='col-xs-6'>
+        <h3><%= history.get('des') %></h3>
+        <p><%= history.get('created_at') %></p>
+      </div>
+      <div class='col-xs-6'>
+        <p><%= payer.get('email') %> paid </p>
+        <h3>$<%= total %>.00</h3>
+      </div>
+  </div>
+</div>

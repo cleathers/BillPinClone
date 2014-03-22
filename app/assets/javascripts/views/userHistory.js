@@ -8,6 +8,10 @@ BillPinClone.Views.UserHistory = Backbone.View.extend({
     this.listenTo(this.histories, 'sync', this.render);
   },
 
+  events: {
+    'click tr': 'routeToSplit'
+  },
+
   template: JST['user_histories'],
 
   render: function () {
@@ -53,6 +57,14 @@ BillPinClone.Views.UserHistory = Backbone.View.extend({
         view._totalOwed -= parseInt(split.get('amt'));
       }
     });
+  },
+
+  routeToSplit: function (event) {
+    debugger
+    if (event.currentTarget.dataset.splitId) {
+      var route = 'split/' + event.currentTarget.dataset.splitId;
+      Backbone.history.navigate(route, {trigger: true});
+    }
   }
   
 });

@@ -9,7 +9,9 @@ BillPinClone.Routers.AppRouter = Backbone.Router.extend({
     'history': 'history',
     'history/': 'history',
     'user/:id': 'userHistory',
-    'user/:id/': 'userHistory'
+    'user/:id/': 'userHistory',
+    'split/:split_id': 'showSplit',
+    'split/:split_id/': 'showSplit'
   },
 
   index: function() {
@@ -22,11 +24,25 @@ BillPinClone.Routers.AppRouter = Backbone.Router.extend({
   history: function () {
     var that = this;
     var histories = new BillPinClone.Collections.Histories();
-      debugger
     histories.fetch({
       success: function (collection) {
         var historiesView = new BillPinClone.Views.Histories({history: collection});
         that._swapViews(historiesView);
+      }
+    });
+  },
+
+  showSplit: function (split_id) {
+    var view = this;
+    var histories = new BillPinClone.Collections.Histories();
+
+    histories.fetch({
+      success: function (collection) {
+        var showSplitView = new BillPinClone.Views.ShowSplit({
+          history: collection,
+          split_id: split_id
+        });
+        view._swapViews(showSplitView);
       }
     });
   },

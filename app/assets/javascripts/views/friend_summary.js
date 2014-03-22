@@ -28,11 +28,6 @@ BillPinClone.Views.FriendSummaries = Backbone.View.extend({
     return view;
   },
 
-  routeToUser: function (event) {
-    var userId = event.currentTarget.dataset.userId;
-    var route = 'user/' + userId;
-    Backbone.history.navigate(route, {trigger: true});
-  },
 
   posOrNeg: function () {
     var view = this;
@@ -85,6 +80,13 @@ BillPinClone.Views.FriendSummaries = Backbone.View.extend({
         }
       }
     });
+  },
+
+  routeToUser: function (event) {
+    if (event.currentTarget.dataset.userId) {
+      var route = 'user/' + event.currentTarget.dataset.userId;
+      Backbone.history.navigate(route, {trigger: true});
+    }
   }
 
 });

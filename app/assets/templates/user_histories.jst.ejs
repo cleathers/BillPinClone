@@ -1,3 +1,4 @@
+<% 'REMOVE ME' %>
 <h3><%= friend.escape('email') %></h3>
 <% if (total > 0) { %>
   <p>owes you <%= total %></p>
@@ -15,8 +16,7 @@
       <th>On</th>
     </tr>
     <% _.each(splits, function (split) { %>
-      <tr>
-      
+      <tr data-split-id='<%= split.get('split_id') %>'>
         <td class="<%= split.get('split_type') %>"><%= split.get('amt') %></td>
         <td><%= histories.get(split.get('split_id')).escape('des') %></td>
         <td><%= split.get('created_at') %></td>
@@ -27,5 +27,3 @@
 <% } else { %>
   <p>You ain't got no transactions</p>
 <% } %>
-https://app.billpin.com/d/user/NotpKU90Hp/transaction/K5VahxjDc4
-https://app.billpin.com/d/user/ZtDSaUpyfZ/transaction/RDi786PZJO

@@ -7,7 +7,7 @@
       <th>On</th>
     </tr>
     <% _.each(splits, function (split) { %>
-      <tr>
+      <tr data-split-id='<%= split.get('split_id') %>'>
         <% if (split.get('user_id') == BillPinClone.current_user.id) { %>
           <td><%= BillPinClone.friends.get(split.get('friend_id')).get('email') %></td>
         <% } else { %>
