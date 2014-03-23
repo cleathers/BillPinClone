@@ -10,6 +10,10 @@ BillPinClone.Views.FriendSummaries = Backbone.View.extend({
     'click tr': 'routeToUser'
   },
 
+  attributes: {
+    'id': 'friend-summaries'
+  },
+
   template: JST['friend_summaries'],
 
 

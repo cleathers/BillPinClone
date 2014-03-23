@@ -1,7 +1,60 @@
-<div class='row'>
-  <div class='col-xs-2'>
+<!-- left side email list -->
+<div class='col-xs-3'>
+  <ul class='nav nav-pills nav-stacked user-list'>
     <% users.each(function(user) { %>
-      <p><%= user.escape('email') %></p>
+      <% if (user.id != current_user.id) { %>
+        <li data-id="<%= user.id %>"><a><%= user.escape('email') %></a></li>
+      <% } %>
     <% }); %>
-  </div>
+  </ul>
 </div>
+
+<!-- form -->
+<form class='col-xs-9 horizontal-form'>
+  <div class='row'>
+    <ul class="nav nav-tabs">
+      <li class='active'><a>Shared equally</a></li>
+      <li><a>Split by amount</a></li>
+    </ul>
+  </div>
+
+  <div class='row user-split-details'>
+    <div class='col-xs-7'>
+      <p><%= current_user.escape('email') %></p>
+    </div>
+    <div class='col-xs-5'>
+      <p>$ <%= value %>.00</p> <!-- heres where dynamic split cost goes -->
+      <input type='hidden' name='split[payer]' value='<%= value %>' >
+    </div>
+  </div>
+
+  <div class='row total-split-details'>
+    <div class='col-xs-9'>
+      <p id='split-des-prev'><%= splitDes %></p>
+      <input type='hidden' name='split[des]' id='split-des-hidden' value='<%= splitDes %>'>
+    </div>
+    <div class='col-xs-3'>
+      <p>I paid</p><!-- dynamicly tells you who paid -->
+    </div>
+  </div>
+
+  <div class='row total-split-details'>
+    <div class='col-xs-9'>
+      <p>DatePicker goes here</p>
+    </div>
+    <div class='col-xs-3'>
+      <p>$ <span id='split-amt-prev'><%= splitAmt %></span>.00</p>
+      <input type='hidden' name='split[amt]' id='split-amt-hidden' value='<%= splitAmt %>'>
+    </div>
+  </div>
+
+  <div class='row split-submit'>
+    <div class='col-xs-9'>
+      <p>picture upload goes here</p>
+    </div>
+    <div class='col-xs-3'>
+      <button class='btn btn-orange'><i class='glyphicon glyphicon-pushpin icon-brown'></i> Pin it!</button>
+    </div>
+  </div>
+  
+</form>
