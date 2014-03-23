@@ -5,9 +5,6 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
   className: 'row',
   
   events: {
-    'keyup #split-amt': 'handleKeyup',
-    'keyup #split-amt': 'adjustValues',
-    'keyup #split-des': 'handleKeyup',
     'click .user-list li': 'addUserToSplit',
     'submit form': 'buildSplit'
     
@@ -36,9 +33,8 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
       user: BillPinClone.friends.get(userId)
     });
 
-    debugger
     $('.user-split-details').last().after(content);
-   
+    this.setValues();
   },
 
   adjustValues: function (event) {
@@ -60,6 +56,17 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
 
     $(hiddenInput).attr('value', input.value);
     $(preview).html(input.value);
+  },
+
+  setValues: function () {
+    var totalVal = $('#split-amt').val();
+    var users = $('.user-split-details');
+    
+    var splitAmt = (totalVal / users.length).toFixed(2);
+    _.each(users, function (user) {
+      $(user).find('.split-amt').attr('value', splitAmt);
+      $(user).find('.split-amt-display').html('$ '+splitAmt);
+    });
   }
 
 });

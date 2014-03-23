@@ -19,6 +19,7 @@ BillPinClone.Views.Index = Backbone.CompositeView.extend({
   handleKeyup: function (event) {
     if (this._subviews['#content'][0].el.id == 'full-form') {
       this._subviews['#content'][0].renderPrev(event);
+      this._subviews['#content'][0].setValues();
     }
   },
 

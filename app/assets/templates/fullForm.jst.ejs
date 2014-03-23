@@ -23,8 +23,8 @@
       <p><%= current_user.escape('email') %></p>
     </div>
     <div class='col-xs-5'>
-      <p>$ <%= value %>.00</p> <!-- heres where dynamic split cost goes -->
-      <input type='hidden' name='split[payer]' value='<%= value %>' >
+      <p class='split-amt-display'>$ <%= value %>.00</p> <!-- heres where dynamic split cost goes -->
+      <input type='hidden' class='split-amt' name='split[payer]' value='<%= value %>' >
     </div>
   </div>
 
