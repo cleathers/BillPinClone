@@ -16,10 +16,14 @@
       <th>On</th>
     </tr>
     <% _.each(splits, function (split) { %>
-      <tr data-split-id='<%= split.get('split_id') %>'>
-        <td class="<%= split.get('split_type') %>"><%= split.get('amt') %></td>
-        <td><%= histories.get(split.get('split_id')).escape('des') %></td>
-        <td><%= split.get('created_at') %></td>
+      <tr data-split-id='<%= split['split_id'] %>'>
+        <% if (split['friend_id'] == BillPinClone.current_user.id) { %>
+          <td class="positive"><%= split['amt'] %></td>
+        <% } else { %>
+          <td class="negative"><%= split['amt'] %></td>
+        <% } %>
+        <td><%= histories.get(split['split_id']).escape('des') %></td>
+        <td><%= split['created_at'] %></td>
       </tr>
     <% }); %>
 

@@ -28,11 +28,24 @@ BillPinClone.Views.Histories = Backbone.View.extend({
   },
 
   getSplits: function () {
-    var splits = BillPinClone.splits.filter(function (split) {
-      if (split.get('user_id') == BillPinClone.current_user.id) {
-        return split;
-      }
+    var splits = [];
+    BillPinClone.splits.each(function (split) {
+
+      var posSplits = split.attributes.pos_splits,
+          negSplits = split.attributes.neg_splits;
+      
+      _.each(posSplits, function (split) {
+        splits.push(split);
+      });
+      _.each(negSplits, function (split) {
+        splits.push(split);
+      });
     });
+    
+    splits = _.sortBy(splits, function (split) {
+      return split['created_at'];
+    });
+
     return splits;
   },
 

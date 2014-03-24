@@ -33,12 +33,30 @@ BillPinClone.Views.UserHistory = Backbone.View.extend({
   getSplits: function () {
     var view = this;
 
-    var splits = BillPinClone.splits.filter(function (split) {
-      if ((split.get('user_id') == BillPinClone.current_user.id &&
-          split.get('friend_id') == view.friend_id)) {
-        return split
-      }
+//    var splits = BillPinClone.splits.filter(function (split) {
+//      if ((split.get('user_id') == BillPinClone.current_user.id &&
+//          split.get('friend_id') == view.friend_id)) {
+//        return split
+//      }
+//    });
+
+    var splits = [];
+    BillPinClone.splits.each(function (split) {
+      var posSplits = split.attributes.pos_splits,
+          negSplits = split.attributes.neg_splits;
+
+      _.each(posSplits, function (split) {
+        splits.push(split);
+      });
+      _.each(negSplits, function (split) {
+        splits.push(split);
+      });
     });
+
+    splits = _.sortBy(splits, function (split) {
+      return split['created_at'];
+    });
+
     view.setTotal(splits);
     return splits;
   },
@@ -48,13 +66,13 @@ BillPinClone.Views.UserHistory = Backbone.View.extend({
     this._totalOwed = 0;
     splits.forEach(function (split) {
       debugger
-      if (split.get('split_type') == 'positive') {
+      if (split['friend_id'] == BillPinClone.current_user.id) {
 
-        view._totalOwed += parseInt(split.get('amt'));
+        view._totalOwed += parseInt(split['amt']);
 
-      } else if (split.get('split_type') == 'negative') {
+      } else {
 
-        view._totalOwed -= parseInt(split.get('amt'));
+        view._totalOwed -= parseInt(split['amt']);
       }
     });
   },
