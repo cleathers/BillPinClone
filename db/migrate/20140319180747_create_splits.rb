@@ -13,6 +13,7 @@ class CreateSplits < ActiveRecord::Migration
     create_table :splits do |t|
       t.decimal :total_amt
       t.string  :des
+      t.integer :payer_id
 
       t.timestamps
     end
@@ -20,5 +21,6 @@ class CreateSplits < ActiveRecord::Migration
     add_index :user_splits, [:user_id, :friend_id]
     add_index :user_splits, [:friend_id, :user_id]
     add_index :user_splits, :split_id
+    add_index :splits, :payer_id
   end
 end

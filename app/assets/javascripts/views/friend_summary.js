@@ -57,49 +57,42 @@ BillPinClone.Views.FriendSummaries = Backbone.View.extend({
 
     // Goes through all bill splits. Adds up totals  
     BillPinClone.splits.each(function (split) {
-      var friend_id = split.get('friend_id');
-      var user_id = split.get('user_id');
 
-      
+      var posSplits = split.attributes.pos_splits,
+          negSplits = split.attributes.neg_splits;
 
-      if (split.get('split_type') == 'positive' &&
-          friend_id == BillPinClone.current_user.get('id')){
-
-        if (view.negatives[split.get('user_id')]) {
-         view.negatives[split.get('user_id')] += parseInt(split.get('amt'))
+      _.each(posSplits, function(posSplit) {
+        if ( view.positives[posSplit['user_id']] ) {
+          view.positives[posSplit['user_id']] += parseInt(posSplit['amt']);
         } else {
-         view.negatives[split.get('user_id')] = parseInt(split.get('amt'))
+          view.positives[posSplit['user_id']] = parseInt(posSplit['amt']);
         }
+      });
 
-      } else if (split.get('split_type') == 'negative' &&
-                  friend_id == BillPinClone.current_user.get('id')){
-
-        if (view.positives[split.get('user_id')]) {
-         view.positives[split.get('user_id')] += parseInt(split.get('amt'))
+      _.each(negSplits, function(negSplit) {
+        if ( view.negatives[negSplit['friend_id']] ) {
+          view.negatives[negSplit['friend_id']] += parseInt(negSplit['amt']);
         } else {
-         view.positives[split.get('user_id')] = parseInt(split.get('amt'))
+          view.negatives[negSplit['friend_id']] = parseInt(negSplit['amt']);
         }
-
-     // } else if (split.get('split_type') == 'positive' &&
-     //          split.get('user_id') == BillPinClone.current_user.get('id')){
-     //   positives.push(split);
-      }
+      });
 
       // if a user is in both positives and negatives hash, this will subtract
       // the difference and remove the key from the other hash.
-      if (view.positives[user_id] && view.negatives[user_id]) {
-        if (view.positives[user_id] > view.negatives[user_id]) {
-          view.positives[user_id] -= view.negatives[user_id]
-          delete view.negatives[user_id]
-
-        } else if (view.positives[user_id] < view.negatives[user_id]) {
-          view.negatives[user_id] -= view.positives[user_id]
-          delete view.positives[user_id]
-        } else {
-          delete view.negatives[user_id];
-          delete view.positives[user_id];
+      _.each(view.positives, function (sum, user) {
+        if (view.negatives[user]) {
+          if (sum > view.negatives[user]) {
+            view.positives[user] -= view.negatives[user];
+            delete view.negatives[user];
+          } else if (sum > view.negatives[user]) {
+            view.negatives[user] -= view.positives[user];
+            delete view.positives[user];
+          } else {
+            delete view.positives[user];
+            delete view.negatives[user];
+          }
         }
-      }
+      });
     });
   },
 

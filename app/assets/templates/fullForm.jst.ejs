@@ -21,11 +21,11 @@
   <div class='row user-split-details'>
     <div class='col-xs-7'>
       <p><%= current_user.escape('email') %></p>
-      <input type='hidden' name='split[0][users][userId]' value='<%= current_user.id %>' >
+      <input type='hidden' name='split[users][0][userId]' value='<%= current_user.id %>' >
     </div>
     <div class='col-xs-5'>
       <p class='split-amt-display'>$ <%= value %>.00</p> <!-- heres where dynamic split cost goes -->
-      <input type='hidden' class='split-amt' name='split[0][users][amt]' value='<%= value %>' >
+      <input type='hidden' class='split-amt' name='split[users][0][amt]' value='<%= value %>' >
     </div>
   </div>
 
@@ -36,7 +36,7 @@
     </div>
     <div class='col-xs-3'>
       <p id='split-payer-display' class="font-9pt">I paid</p><!-- dynamicly tells you who paid -->
-      <input type='hidden' id='split-payer' name='split[payerId]' value='<%= payer %>'>
+      <input type='hidden' id='split-payer-input' name='split[payerId]' value='<%= payer %>'>
     </div>
   </div>
 
@@ -46,7 +46,7 @@
     </div>
     <div class='col-xs-3'>
       <p class="font-24">$ <span id='split-amt-prev'><%= splitAmt %></span>.00</p>
-      <input type='hidden' name='split[amt]' id='split-amt-hidden' value='<%= splitAmt %>'>
+      <input type='hidden' name='split[totalAmt]' id='split-amt-hidden' value='<%= splitAmt %>'>
     </div>
   </div>
 

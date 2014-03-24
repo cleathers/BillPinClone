@@ -19,9 +19,12 @@ ActiveRecord::Schema.define(version: 20140319180747) do
   create_table "splits", force: true do |t|
     t.decimal  "total_amt"
     t.string   "des"
+    t.integer  "payer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "splits", ["payer_id"], name: "index_splits_on_payer_id", using: :btree
 
   create_table "user_splits", force: true do |t|
     t.decimal  "amt"

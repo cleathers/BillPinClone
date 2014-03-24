@@ -31,7 +31,7 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
     $(event.currentTarget).remove();
     var content = this.userTemplate({
       user: BillPinClone.friends.get(userId),
-      numUsers: ($('user-split-details').length + 1)
+      numUsers: ($('.user-split-details').length)
     });
 
     $('.user-split-details').last().after(content);
@@ -44,6 +44,7 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
 
   buildSplit: function (event) {
     event.preventDefault();
+    var formData = $(event.target).serializeJSON().split;
     debugger
 
     // run a fetch so the other view which isn't even displayed at this point will update.
@@ -52,9 +53,9 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
   },
 
   changePayer: function (event) {
-    var payerId = event.target.value;
+    var payerId = $(event.target).val();
     var newPayer = BillPinClone.friends.get(payerId);
-    $('#split-payer').attr('value', payerId);
+    $('#split-payer-input').attr('value', payerId);
     $('#split-payer-display').html(newPayer.escape('email') + ' paid');
   },
 

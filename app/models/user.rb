@@ -25,5 +25,6 @@ class User < ActiveRecord::Base
 
 
   has_many :user_splits
+  has_many :splits, foreign_key: :payer_id
   has_many :friends, through: :user_splits, source: :friend
 end
