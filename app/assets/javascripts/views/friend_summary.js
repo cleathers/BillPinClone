@@ -77,6 +77,7 @@ BillPinClone.Views.FriendSummaries = Backbone.View.extend({
         }
       });
 
+        debugger
       // if a user is in both positives and negatives hash, this will subtract
       // the difference and remove the key from the other hash.
       _.each(view.positives, function (sum, user) {
@@ -84,7 +85,7 @@ BillPinClone.Views.FriendSummaries = Backbone.View.extend({
           if (sum > view.negatives[user]) {
             view.positives[user] -= view.negatives[user];
             delete view.negatives[user];
-          } else if (sum > view.negatives[user]) {
+          } else if (sum < view.negatives[user]) {
             view.negatives[user] -= view.positives[user];
             delete view.positives[user];
           } else {
