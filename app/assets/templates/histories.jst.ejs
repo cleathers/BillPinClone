@@ -10,10 +10,10 @@
       <tr data-split-id='<%= split['split_id'] %>'>
         <% if (split['user_id'] == BillPinClone.current_user.id) { %>
           <td><%= BillPinClone.friends.get(split['friend_id']).get('email') %></td>
-          <td class="positive"><%= split['amt'] %></td>
+          <td class="negative"><%= split['amt'] %></td>
         <% } else { %>
           <td><%= BillPinClone.friends.get(split['user_id']).get('email') %></td>
-          <td class="negative"><%= split['amt'] %></td>
+          <td class="positive"><%= split['amt'] %></td>
         <% } %>
         <td><%= histories.get(split['split_id']).escape('des') %></td>
         <td><%= split['created_at'] %></td>
