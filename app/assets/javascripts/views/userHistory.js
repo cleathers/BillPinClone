@@ -33,13 +33,6 @@ BillPinClone.Views.UserHistory = Backbone.View.extend({
   getSplits: function () {
     var view = this;
 
-//    var splits = BillPinClone.splits.filter(function (split) {
-//      if ((split.get('user_id') == BillPinClone.current_user.id &&
-//          split.get('friend_id') == view.friend_id)) {
-//        return split
-//      }
-//    });
-
     var splits = [];
     BillPinClone.splits.each(function (split) {
       var posSplits = split.attributes.pos_splits,
@@ -65,7 +58,6 @@ BillPinClone.Views.UserHistory = Backbone.View.extend({
     var view = this;
     this._totalOwed = 0;
     splits.forEach(function (split) {
-      debugger
       if (split['friend_id'] == BillPinClone.current_user.id) {
 
         view._totalOwed += parseInt(split['amt']);
@@ -78,7 +70,6 @@ BillPinClone.Views.UserHistory = Backbone.View.extend({
   },
 
   routeToSplit: function (event) {
-    debugger
     if (event.currentTarget.dataset.splitId) {
       var route = 'split/' + event.currentTarget.dataset.splitId;
       Backbone.history.navigate(route, {trigger: true});

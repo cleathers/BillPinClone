@@ -33,17 +33,13 @@ BillPinClone.Routers.AppRouter = Backbone.Router.extend({
 
   showSplit: function (split_id) {
     var view = this;
-    var histories = new BillPinClone.Collections.Histories();
 
-    histories.fetch({
-      success: function (collection) {
-        var showSplitView = new BillPinClone.Views.ShowSplit({
-          history: collection,
-          split_id: split_id
-        });
-        view._swapViews(showSplitView);
-      }
+    var split = BillPinClone.splits.getOrFetch(split_id)
+    var showSplitView = new BillPinClone.Views.ShowSplit({
+      model: split
     });
+
+    view._swapViews(showSplitView);
   },
 
   userHistory: function (id) {

@@ -53,7 +53,7 @@ class Api::SplitsController < ApplicationController
   end
 
   def show
-    @split = current_user.splits.where(id: params[:id]).first
+    @split = Split.find(params[:id])
     @users = @split.user_splits
 
     render 'api/splits/show'
