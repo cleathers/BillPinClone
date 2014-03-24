@@ -1,6 +1,6 @@
 <form class='form-inline quick-form center'>
   <div class='form-group'>
-    <select name='split[payer]' id='split-payer' class='form-control col-xs-2'>
+    <select name='split[payer]' id='split-payer' class='form-control'>
       <% users.each(function (user) { %>
         <option value='<%= user.get('id') %>'><%= user.get('email') %></option>
       <% }); %>

@@ -63,6 +63,11 @@ $highlightGrey: #eee;
   border-bottom: 1px solid $grey;
 }
 
+// FONTS
+ .font-9pt {
+  margin-top: 13px;
+ }
+
 
 // MODALS
 .modal-header {
@@ -96,6 +101,7 @@ $highlightGrey: #eee;
 // TABLES
 .table-history tr:hover > td:nth-child(1n) {
   background-color: $highlightGrey;
+  cursor: pointer;
 }
 
 // TEXT STYLES

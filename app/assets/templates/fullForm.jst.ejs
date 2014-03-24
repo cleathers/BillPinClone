@@ -31,11 +31,11 @@
 
   <div class='row total-split-details'>
     <div class='col-xs-9'>
-      <p id='split-des-prev'><%= splitDes %></p>
+      <p id='split-des-prev' class="pin-description"><%= splitDes %></p>
       <input type='hidden' name='split[des]' id='split-des-hidden' value='<%= splitDes %>'>
     </div>
     <div class='col-xs-3'>
-      <p id='split-payer-display'>I paid</p><!-- dynamicly tells you who paid -->
+      <p id='split-payer-display' class="font-9pt">I paid</p><!-- dynamicly tells you who paid -->
       <input type='hidden' id='split-payer' name='split[payerId]' value='<%= payer %>'>
     </div>
   </div>
@@ -45,7 +45,7 @@
       <p>DatePicker goes here</p>
     </div>
     <div class='col-xs-3'>
-      <p>$ <span id='split-amt-prev'><%= splitAmt %></span>.00</p>
+      <p class="font-24">$ <span id='split-amt-prev'><%= splitAmt %></span>.00</p>
       <input type='hidden' name='split[amt]' id='split-amt-hidden' value='<%= splitAmt %>'>
     </div>
   </div>
