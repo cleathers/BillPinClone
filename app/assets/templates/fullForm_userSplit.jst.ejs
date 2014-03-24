@@ -1,9 +1,10 @@
 <div class='row user-split-details'>
   <div class='col-xs-7'>
     <p><%= user.escape('email') %></p>
+    <input type='hidden' name='split[<%= numUsers %>][users][userId]' value='<%= user.id %>'>
   </div>
   <div class='col-xs-5'>
     <p class='split-amt-display'></p> <!-- heres where dynamic split cost goes -->
-    <input type='hidden' class='split-amt' name='split[borrowers][<%= user.id %>]' >
+    <input type='hidden' class='split-amt' name='split[<%= numUsers %>][users][amt]' >
   </div>
 </div>

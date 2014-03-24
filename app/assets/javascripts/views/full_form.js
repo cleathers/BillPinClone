@@ -7,7 +7,6 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
   events: {
     'click .user-list li': 'addUserToSplit',
     'submit form': 'buildSplit'
-    
   },
 
   attributes: {
@@ -20,7 +19,8 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
       users: BillPinClone.friends,
       splitAmt: $('#split-amt').val(),
       value: $('#split-amt').val(),
-      splitDes: $('#split-des').val()
+      splitDes: $('#split-des').val(),
+      payer: $('#split-payer').val()
     }));
     
     return this;
@@ -30,7 +30,8 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
     var userId = event.currentTarget.dataset.id;
     $(event.currentTarget).remove();
     var content = this.userTemplate({
-      user: BillPinClone.friends.get(userId)
+      user: BillPinClone.friends.get(userId),
+      numUsers: ($('user-split-details').length + 1)
     });
 
     $('.user-split-details').last().after(content);
@@ -43,10 +44,18 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
 
   buildSplit: function (event) {
     event.preventDefault();
+    debugger
 
     // run a fetch so the other view which isn't even displayed at this point will update.
     BillPinClone.splits.create(formData, {wait: true});
     BillPinClone.splits.fetch();
+  },
+
+  changePayer: function (event) {
+    var payerId = event.target.value;
+    var newPayer = BillPinClone.friends.get(payerId);
+    $('#split-payer').attr('value', payerId);
+    $('#split-payer-display').html(newPayer.escape('email') + ' paid');
   },
 
   renderPrev: function (event) {

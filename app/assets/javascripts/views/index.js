@@ -11,10 +11,17 @@ BillPinClone.Views.Index = Backbone.CompositeView.extend({
   events: {
     'click .quick-form button': 'swapContentView',
     'keyup #split-amt': 'handleKeyup',
-    'keyup #split-des': 'handleKeyup'
+    'keyup #split-des': 'handleKeyup',
+    'change #split-payer': 'changedPayer'
   },
 
   template: JST['index'],
+
+  changedPayer: function (event) {
+    if (this._subviews['#content'][0].el.id == 'full-form') {
+      this._subviews['#content'][0].changePayer(event);
+    }
+  },
 
   handleKeyup: function (event) {
     if (this._subviews['#content'][0].el.id == 'full-form') {
