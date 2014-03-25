@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_or_guest_user
 
   def current_or_guest_user
+    
     if current_user
       if session[:guest_user_id]
         guest_user.destroy
@@ -15,19 +16,22 @@ class ApplicationController < ActionController::Base
     else
       guest_user
       redirect_to root_url
+      return guest_user
     end
   end
 
   def guest_user
-    @cached_guest_user ||= User.find(session[:guest_user_id] ||= create_guest_user.id)
-
+    begin
+      @cached_guest_user ||= User.find(session[:guest_user_id] ||= create_guest_user.id)
+      sign_in(:user, @cached_guest_user)
     rescue ActiveRecord::RecordNotFound # if session[:guest_user_id] invalid
       session[:guest_user_id] = nil
       guest_user
+    end
   end
 
   def logged_in?
-    if !current_user
+    if !current_or_guest_user
       redirect_to root_url
       return
     end

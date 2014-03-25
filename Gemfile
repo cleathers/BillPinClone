@@ -26,6 +26,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'jquery-rails'
 gem 'backbone-on-rails'
 gem 'ejs'
+gem 'figaro'
 
 
 group :development do

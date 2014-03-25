@@ -1,7 +1,6 @@
 BillPinClone.Views.SplitForm = Backbone.CompositeView.extend({
 
   initialize: function (options) {
-    this.listenTo(BillPinClone.friends, 'sync', this.render);
   },
 
   attributes: {
@@ -15,7 +14,6 @@ BillPinClone.Views.SplitForm = Backbone.CompositeView.extend({
   template: JST['splitForm'],
 
   changePayer: function (event) {
-      debugger
     this.$el.find('.pointer').each(function (idx, el) {
       $(el).toggleClass('hidden');
     });

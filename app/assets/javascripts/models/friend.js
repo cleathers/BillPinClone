@@ -1,1 +1,3 @@
-BillPinClone.Models.Friend = Backbone.Model.extend({});
+BillPinClone.Models.Friend = Backbone.Model.extend({
+  urlRoot: '/api/users'  
+});

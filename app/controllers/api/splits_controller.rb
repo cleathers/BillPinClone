@@ -1,5 +1,5 @@
 class Api::SplitsController < ApplicationController
-  before_filter :logged_in?
+  before_filter :authenticate_user!
 
   def create
     p "CURRENT_USER #{current_user.email}"

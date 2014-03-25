@@ -38,7 +38,6 @@ BillPinClone.Views.UserHistory = Backbone.View.extend({
       var posSplits = split.attributes.pos_splits,
           negSplits = split.attributes.neg_splits;
 
-        debugger
       _.each(posSplits, function (split) {
         if (split['user_id'] == view.friend_id) {
           splits.push(split);
@@ -65,11 +64,11 @@ BillPinClone.Views.UserHistory = Backbone.View.extend({
     splits.forEach(function (split) {
       if (split['friend_id'] == BillPinClone.current_user.id) {
 
-        view._totalOwed += parseInt(split['amt']);
+        view._totalOwed += parseFloat(split['amt']).toFixed(2);
 
       } else {
 
-        view._totalOwed -= parseInt(split['amt']);
+        view._totalOwed -= parseFloat(split['amt']).toFixed(2);
       }
     });
   },

@@ -27,3 +27,9 @@
     <% }); %>
   </table>
 <% } %>
+
+<% if (_.isEmpty(negatives) && _.isEmpty(positives)) { %>
+  <div class='col-md-8 col-md-offset-4'>
+    <h3>Welcome to BillPinClone</h3>
+  </div>
+<% } %>

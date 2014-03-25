@@ -21,15 +21,23 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
   },
 
   render: function () {
-    var payerId = $('#split-payer').val()
+    var payerId = $('#split-payer').val();
+    var splitAmt = $('#split-amt').val();
+    var totalAmt = $('#split-amt').val();
+
+    if (isNaN(splitAmt) || !splitAmt) {
+      splitAmt = parseFloat('0');
+      totalAmt = parseFloat('0');
+    }
+
     this.$el.html(this.template({
       current_user: BillPinClone.current_user,
       users: BillPinClone.friends,
-      splitAmt: $('#split-amt').val(),
-      value: $('#split-amt').val(),
+      splitAmt: parseFloat(totalAmt).toFixed(2),
+      value: parseFloat(splitAmt).toFixed(2),
       splitDes: $('#split-des').val(),
       payerId: payerId,
-      payerEmail: BillPinClone.friends.get(payerId).get('email')
+      payerEmail: BillPinClone.friends.getOrFetch(payerId).get('email')
     }));
     
     return this;
@@ -49,10 +57,6 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
     }
 
     this.setValues();
-  },
-
-  adjustValues: function (event) {
-    
   },
 
   buildSplit: function (event) {
@@ -89,26 +93,35 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
   },
 
   renderPrev: function (event) {
-    var input = event.currentTarget
+    var input = event.currentTarget;
     var preview = '#' + input.id + '-prev';
     var hiddenInput = '#' + input.id + '-hidden';
 
-    $(hiddenInput).attr('value', input.value);
-    $(preview).html(input.value);
+    if (input.id == 'split-amt') {
+      var value = parseFloat(input.value).toFixed(2);
+      if (isNaN(value)) {
+        value = parseFloat('0').toFixed(2);
+      }
+    }
+
+    $(hiddenInput).attr('value', value);
+    $(preview).html(value);
+
   },
 
   removeUserFromSplit: function (event) {
-    event.preventDefault;
+    event.preventDefault();
     var userId = event.currentTarget.parentNode.dataset.id;
     $(event.currentTarget.parentNode.parentNode.parentNode).remove();
-    debugger
+
     var $li = $('<li>');
     $li.attr('data-id', userId);
-    $a = $('<a>')
+    $a = $('<a>');
     $a.html(BillPinClone.friends.get(userId).get('email'));
-    $li.append($a);
 
+    $li.append($a);
     $('.user-list').append($li);
+
     this.setValues();
   },
 
@@ -118,9 +131,6 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
     
     var splitAmt = (totalVal / users.length).toFixed(2);
     _.each(users, function (user) {
-      // the folowing two lines produced the same effect
-      // $(user).find('.split-amt').removeAttr('value');
-      // $(user).find('.split-amt').attr('value', splitAmt);
       $(user).find('.split-amt').val(splitAmt);
 
       $(user).find('.split-amt-display').html('$ '+splitAmt);
