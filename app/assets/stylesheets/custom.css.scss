@@ -27,15 +27,6 @@ $highlightGrey: #eee;
   display: inherit;
 }
 
-// ICONS
-.icon-white {
-  color: white;
-}
-
-.icon-bronw{
-  color: $brown;
-}
-
 // FORMS 
 .form-control:focus {
   border-color: $orange;
@@ -73,10 +64,23 @@ $highlightGrey: #eee;
 }
 
 // FONTS
- .font-9pt {
-  margin-top: 13px;
- }
+.font-9pt {
+   margin-top: 13px;
+}
 
+// HELPERS
+.buffer-bottom {
+  margin-bottom: 10px;
+}
+
+// ICONS
+.icon-white {
+  color: white;
+}
+
+.icon-bronw{
+  color: $brown;
+}
 
 // MODALS
 .modal-header {

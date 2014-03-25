@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140319180747) do
+ActiveRecord::Schema.define(version: 20140325214003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,11 @@ ActiveRecord::Schema.define(version: 20140319180747) do
     t.integer  "payer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "receipt_photo_file_name"
+    t.string   "receipt_photo_content_type"
+    t.integer  "receipt_photo_file_size"
+    t.datetime "receipt_photo_updated_at"
+    t.date     "date"
   end
 
   add_index "splits", ["payer_id"], name: "index_splits_on_payer_id", using: :btree

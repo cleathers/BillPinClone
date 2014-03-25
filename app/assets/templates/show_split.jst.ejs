@@ -15,12 +15,15 @@
     <% if (split) { %>
       <div class='col-xs-6'>
         <h3><%= split['des'] %></h3>
-        <p><%= split['created_at'] %></p>
+        <p><%= split['date'] %></p>
       </div>
       <div class='col-xs-6'>
         <p><%= BillPinClone.friends.get(split['payer_id']).get('email') %> paid </p>
         <h3>$ <%= parseFloat(split['total_amt']).toFixed(2) %></h3>
       </div>
+      <% if (picture) { %>
+        <img src='<%= picture %>' >
+      <% }  %>
     <% } %>
   </div>
 </div>

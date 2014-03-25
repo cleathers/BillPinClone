@@ -13,6 +13,8 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
     'click #split-by-amount': 'openSplits',
     'click #shared-equally': 'shareEqually',
     'click .close': 'removeUserFromSplit',
+    'change #split-receipt': 'handleFile',
+    'keyup .split-amt': 'checkValid',
     'submit form': 'buildSplit'
   },
 
@@ -44,6 +46,9 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
   },
 
   addUserToSplit: function (event) {
+    // emptys out warnings label
+    $('#warnings').empty();
+
     var userId = event.currentTarget.dataset.id;
     $(event.currentTarget).remove();
     var content = this.userTemplate({
@@ -61,11 +66,17 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
 
   buildSplit: function (event) {
     event.preventDefault();
-    var formData = $(event.target).serializeJSON().split;
+    if ($('.user-split-details').length == 1) {
+      $('#warnings').html('Sorry, you can\'t post a split with just yourself');
+    } else {
+      var formData = $(event.target).serializeJSON().split;
+      formData['receipt_photo'] = this._splitPic;
 
-    // run a fetch so the other view which isn't even displayed at this point will update.
-    BillPinClone.splits.create(formData, {wait: true});
-    BillPinClone.splits.fetch();
+
+      // run a fetch so the other view which isn't even displayed at this point will update.
+      BillPinClone.splits.create(formData, {wait: true});
+      BillPinClone.splits.fetch();
+    }
   },
 
   changePayer: function (event) {
@@ -73,6 +84,39 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
     var newPayer = BillPinClone.friends.get(payerId);
     $('#split-payer-input').attr('value', payerId);
     $('#split-payer-display').html(newPayer.escape('email') + ' paid');
+  },
+
+  checkValid: function (event) {
+    this.checkUserInputs();
+  },
+
+  checkUserInputs: function () {
+    var splitAmts = $('.split-amt');
+    var totalAmt = $('#split-amt').val();
+    var total = parseFloat(0);
+    _.each(splitAmts, function (amt) {
+      total += parseFloat(amt.value);
+    });
+    if ( totalAmt && totalAmt != 0 ) { 
+      if ( parseFloat(total).toFixed(2) != parseFloat(totalAmt).toFixed(2) ) {
+        $('#submit-button').addClass('disabled');
+        $('#warnings').html('User amounts must equal total!');
+      } else {
+        $('#submit-button').removeClass('disabled');
+        $('#warnings').empty();
+      }
+    }
+  },
+
+  handleFile: function (event) {
+    var view = this;
+    var file = event.target.files[0];
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      view._splitPic = e.target.result
+    }
+
+    reader.readAsDataURL(file);
   },
 
   openSplits: function (event) {
@@ -96,9 +140,10 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
     var input = event.currentTarget;
     var preview = '#' + input.id + '-prev';
     var hiddenInput = '#' + input.id + '-hidden';
+    var value = input.value;
 
     if (input.id == 'split-amt') {
-      var value = parseFloat(input.value).toFixed(2);
+      value = parseFloat(value).toFixed(2);
       if (isNaN(value)) {
         value = parseFloat('0').toFixed(2);
       }
@@ -106,7 +151,6 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
 
     $(hiddenInput).attr('value', value);
     $(preview).html(value);
-
   },
 
   removeUserFromSplit: function (event) {

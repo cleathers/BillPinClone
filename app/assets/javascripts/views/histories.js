@@ -35,7 +35,6 @@ BillPinClone.Views.Histories = Backbone.View.extend({
 
       var posSplits = split.attributes.pos_splits,
           negSplits = split.attributes.neg_splits;
-      debugger 
       _.each(posSplits, function (split) {
         splits.push(split);
       });
@@ -52,7 +51,6 @@ BillPinClone.Views.Histories = Backbone.View.extend({
   },
 
   routeToSplit: function (event) {
-    debugger
     if (event.currentTarget.dataset.splitId) {
       var route = 'split/' + event.currentTarget.dataset.splitId;
       Backbone.history.navigate(route, {trigger: true});

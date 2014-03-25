@@ -8,6 +8,8 @@ class Api::SplitsController < ApplicationController
     new_split.des = split_params['des']
     new_split.total_amt = split_params['totalAmt']
     new_split.payer_id = split_params['payerId']
+    new_split.receipt_photo = split_params['receipt_photo']
+    new_split.date = split_params['date']
     # setting blank obj for return model
 
     # user split details
@@ -69,7 +71,7 @@ class Api::SplitsController < ApplicationController
 
   private
     def split_params
-      params.permit(:des, :totalAmt, :payerId, 
+      params.permit(:date, :des, :totalAmt, :payerId, :receipt_photo,
                                     users: [ :amt, :userId ])
     end
 end

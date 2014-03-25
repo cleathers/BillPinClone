@@ -27,6 +27,8 @@ gem 'jquery-rails'
 gem 'backbone-on-rails'
 gem 'ejs'
 gem 'figaro'
+gem 'paperclip'
+gem 'aws-sdk'
 
 
 group :development do

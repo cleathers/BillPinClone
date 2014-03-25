@@ -9,9 +9,9 @@ BillPinClone.Views.ShowSplit = Backbone.View.extend({
   render: function () {
     var view = this;
 
-    debugger
     var renderedContent = view.template({
       split: view.model.attributes.split,
+      picture: view.model.attributes.receipt_photo,
       users: view.model.attributes.users
     });
 

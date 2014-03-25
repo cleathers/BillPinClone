@@ -11,8 +11,9 @@
 </div>
 
 <!-- form -->
-<form class='col-md-9 horizontal-form'>
+<form class='col-md-9 horizontal-form' enctype="multipart/form-data">
   <div class='row'>
+    <p id='warnings' class='text-info pull-right'></p>
     <ul class="nav nav-tabs">
       <li class='active' id='shared-equally'><a>Shared equally</a></li>
       <li id='split-by-amount'><a>Split by amount</a></li>
@@ -26,8 +27,8 @@
       <input type='hidden' name='split[users][0][userId]' value='<%= current_user.id %>' >
     </div>
     <div class='col-xs-5'>
-      <p class='split-amt-display'>$ <%= value %></p> <!-- heres where dynamic split cost goes -->
-      <input type='hidden' class='split-amt user-split form-control'
+      <p class='split-amt-display'>$ <%= value %></p>
+      <input type='hidden' class='split-amt user-split form-control input-sm buffer-bottom'
              name='split[users][0][amt]' value='<%= value %>' >
     </div>
   </div>
@@ -38,14 +39,16 @@
       <input type='hidden' name='split[des]' id='split-des-hidden' value='<%= splitDes %>'>
     </div>
     <div class='col-xs-3'>
-      <p id='split-payer-display' class="font-9pt"><%= payerEmail %> paid</p><!-- dynamicly tells you who paid -->
+      <p id='split-payer-display' class="font-9pt"><%= payerEmail %> paid</p>
       <input type='hidden' id='split-payer-input' name='split[payerId]' value='<%= payerId %>'>
     </div>
   </div>
 
   <div class='row total-split-details'>
     <div class='col-xs-9'>
-      <p>DatePicker goes here</p>
+      <div class='col-xs-3'>
+        <input type='date' class='form-control input-sm' name='split[date]'>
+      </div>
     </div>
     <div class='col-xs-3'>
       <p class="font-24">$ <span id='split-amt-prev'><%= splitAmt %></span></p>
@@ -55,11 +58,10 @@
 
   <div class='row split-submit'>
     <div class='col-xs-9'>
-      <p>picture upload goes here</p>
+      <input type='file' name='split[receipt_photo]' id='split-receipt' multiple>
     </div>
     <div class='col-xs-3'>
-      <button class='btn btn-orange'><i class='glyphicon glyphicon-pushpin icon-brown'></i> Pin it!</button>
+      <button id='submit-button' class='btn btn-orange'><i class='glyphicon glyphicon-pushpin icon-brown'></i> Pin it!</button>
     </div>
   </div>
-  
 </form>
