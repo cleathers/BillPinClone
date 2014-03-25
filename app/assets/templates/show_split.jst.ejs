@@ -6,7 +6,7 @@
           <p><%= BillPinClone.friends.get(user['user_id']).escape('email') %></p>
         </div>
         <div class='col-xs-3'>
-          <p><%= user['amt'] %></p>
+          <p>$ <%= parseFloat(user['amt']).toFixed(2) %></p>
         </div>
       </div>
     <% }); %>
@@ -19,7 +19,7 @@
       </div>
       <div class='col-xs-6'>
         <p><%= BillPinClone.friends.get(split['payer_id']).get('email') %> paid </p>
-        <h3>$<%= split['total_amt'] %>.00</h3>
+        <h3>$ <%= parseFloat(split['total_amt']).toFixed(2) %></h3>
       </div>
     <% } %>
   </div>

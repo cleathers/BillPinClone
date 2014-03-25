@@ -35,8 +35,8 @@
       <input type='hidden' name='split[des]' id='split-des-hidden' value='<%= splitDes %>'>
     </div>
     <div class='col-xs-3'>
-      <p id='split-payer-display' class="font-9pt">I paid</p><!-- dynamicly tells you who paid -->
-      <input type='hidden' id='split-payer-input' name='split[payerId]' value='<%= payer %>'>
+      <p id='split-payer-display' class="font-9pt"><%= payerEmail %> paid</p><!-- dynamicly tells you who paid -->
+      <input type='hidden' id='split-payer-input' name='split[payerId]' value='<%= payerId %>'>
     </div>
   </div>
 

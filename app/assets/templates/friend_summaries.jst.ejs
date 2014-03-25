@@ -7,7 +7,7 @@
     <% _.each(positives, function(amt, user_id) { %>
       <tr data-user-id='<%= user_id %>'>
         <td><%= users.get(user_id).escape('email')  %></td>
-        <td>$<%= amt %>.00</td>
+        <td>$ <%= parseFloat(amt).toFixed(2) %></td>
       </tr>
     <% }); %>
   </table>
@@ -22,7 +22,7 @@
   <% _.each(negatives, function(amt, user_id) { %>
       <tr data-user-id='<%= user_id %>'>
         <td><%= users.get(user_id).escape('email')  %></td>
-        <td>$<%= amt %>.00</td>
+        <td>$ <%= parseFloat(amt).toFixed(2) %></td>
       </tr>
     <% }); %>
   </table>

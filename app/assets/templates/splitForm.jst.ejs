@@ -1,8 +1,14 @@
 <form class='form-inline quick-form center'>
   <div class='form-group'>
-    <select name='split[payer]' id='split-payer' class='form-control'>
+    <span class='pointer bold white font-14pt'>I PAID</span>
+    <span class='pointer blue small'>[change]</span>
+    <select name='split[payer]' id='split-payer' class='hidden form-control'>
       <% users.each(function (user) { %>
-        <option value='<%= user.get('id') %>'><%= user.get('email') %></option>
+        <option value='<%= user.id %>'
+          <% if (user.id == current_user.id) { %>
+            selected="selected"
+          <% } %>
+        ><%= user.get('email') %></option>
       <% }); %>
     </select>
   </div>

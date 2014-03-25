@@ -14,13 +14,15 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
   },
 
   render: function () {
+    var payerId = $('#split-payer').val()
     this.$el.html(this.template({
       current_user: BillPinClone.current_user,
       users: BillPinClone.friends,
       splitAmt: $('#split-amt').val(),
       value: $('#split-amt').val(),
       splitDes: $('#split-des').val(),
-      payer: $('#split-payer').val()
+      payerId: payerId,
+      payerEmail: BillPinClone.friends.get(payerId).get('email')
     }));
     
     return this;
