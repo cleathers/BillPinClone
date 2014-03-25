@@ -18,6 +18,15 @@ $highlightGrey: #eee;
   border-color: rgb(214, 108, 61);
   color: white;
 }
+
+.user-split-details .close {
+  display: none;
+}
+
+.user-split-details:hover .close {
+  display: inherit;
+}
+
 // ICONS
 .icon-white {
   color: white;

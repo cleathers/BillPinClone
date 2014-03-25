@@ -3,9 +3,16 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
   template: JST['fullForm'],
   userTemplate: JST['fullForm_userSplit'],
   className: 'row',
+
+  initialize: function (options) {
+    BillPinClone.friends.fetch();
+  },
   
   events: {
     'click .user-list li': 'addUserToSplit',
+    'click #split-by-amount': 'openSplits',
+    'click #shared-equally': 'shareEqually',
+    'click .close': 'removeUserFromSplit',
     'submit form': 'buildSplit'
   },
 
@@ -37,6 +44,10 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
     });
 
     $('.user-split-details').last().after(content);
+    if (this.$el.find('#split-by-amount').hasClass('active')) {
+      this.openSplits();
+    }
+
     this.setValues();
   },
 
@@ -61,6 +72,23 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
     $('#split-payer-display').html(newPayer.escape('email') + ' paid');
   },
 
+  openSplits: function (event) {
+    if (event) {
+      this.$el.find('#shared-equally').removeClass('active');
+      $(event.currentTarget).addClass('active');
+    }
+
+    // changes hidden inputs to text fields
+    this.$el.find('.user-split').each(function (idx, userInput) {
+      $(userInput).attr('type', 'input');
+    });
+    // hides ps from DOM
+    this.$el.find('.split-amt-display').each(function(idx, userInput) {
+      $(userInput).addClass('hidden');
+    });
+    this.setValues();
+  },
+
   renderPrev: function (event) {
     var input = event.currentTarget
     var preview = '#' + input.id + '-prev';
@@ -70,15 +98,49 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
     $(preview).html(input.value);
   },
 
+  removeUserFromSplit: function (event) {
+    event.preventDefault;
+    var userId = event.currentTarget.parentNode.dataset.id;
+    $(event.currentTarget.parentNode.parentNode.parentNode).remove();
+    debugger
+    var $li = $('<li>');
+    $li.attr('data-id', userId);
+    $a = $('<a>')
+    $a.html(BillPinClone.friends.get(userId).get('email'));
+    $li.append($a);
+
+    $('.user-list').append($li);
+    this.setValues();
+  },
+
   setValues: function () {
     var totalVal = $('#split-amt').val();
     var users = $('.user-split-details');
     
     var splitAmt = (totalVal / users.length).toFixed(2);
     _.each(users, function (user) {
-      $(user).find('.split-amt').attr('value', splitAmt);
+      // the folowing two lines produced the same effect
+      // $(user).find('.split-amt').removeAttr('value');
+      // $(user).find('.split-amt').attr('value', splitAmt);
+      $(user).find('.split-amt').val(splitAmt);
+
       $(user).find('.split-amt-display').html('$ '+splitAmt);
     });
+  },
+
+  shareEqually: function (event) {
+    this.$el.find('#split-by-amount').removeClass('active');
+    $(event.currentTarget).addClass('active');
+    // finds text inputs, switches them to hidden
+    this.$el.find('.user-split').each(function (idx, userInput) {
+      $(userInput).attr('type', 'hidden');
+    });
+
+    // reshows p tags
+    this.$el.find('.split-amt-display').each(function(idx, userInput) {
+      $(userInput).removeClass('hidden');
+    });
+    this.setValues();
   }
 
 });
