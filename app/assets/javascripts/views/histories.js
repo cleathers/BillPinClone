@@ -4,6 +4,7 @@ BillPinClone.Views.Histories = Backbone.View.extend({
     this.histories = options['history'];
 
     this.listenTo(BillPinClone.splits, 'sync add', this.render);
+    this.listenTo(BillPinClone.friends, 'sync', this.render);
     this.listenTo(this.histories, 'sync', this.render);
   },
 
@@ -31,9 +32,10 @@ BillPinClone.Views.Histories = Backbone.View.extend({
     var splits = [];
     BillPinClone.splits.each(function (split) {
 
+
       var posSplits = split.attributes.pos_splits,
           negSplits = split.attributes.neg_splits;
-      
+      debugger 
       _.each(posSplits, function (split) {
         splits.push(split);
       });

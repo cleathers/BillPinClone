@@ -58,7 +58,6 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
   buildSplit: function (event) {
     event.preventDefault();
     var formData = $(event.target).serializeJSON().split;
-    debugger
 
     // run a fetch so the other view which isn't even displayed at this point will update.
     BillPinClone.splits.create(formData, {wait: true});
