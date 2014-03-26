@@ -15,7 +15,7 @@
       </div>
     <% }); %>
   <% } %>
-  <div class='row'>
+  <div class='row user-row'>
     <% if (split) { %>
       <div class='col-xs-6'>
         <h3><%= split['des'] %></h3>
@@ -23,7 +23,7 @@
       </div>
       <div class='col-xs-6'>
         <p><%= BillPinClone.friends.get(split['payer_id']).get('email') %> paid </p>
-        <h3>$ <%= parseFloat(split['total_amt']).toFixed(2) %></h3>
+        <h3 class='pull-right'>$ <%= parseFloat(split['total_amt']).toFixed(2) %></h3>
       </div>
       <% if (split.receipt_photo) { %>
         <img src='<%= split.receipt_photo %>' >

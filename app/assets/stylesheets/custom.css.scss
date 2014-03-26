@@ -89,7 +89,7 @@ p {
 
 .user-row {
   border-bottom: 1px solid $borderColor;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 // ICONS
@@ -135,6 +135,10 @@ p {
 .table-history tr:hover > td:nth-child(1n) {
   background-color: $highlightGrey;
   cursor: pointer;
+}
+
+.display-amt { 
+  text-align: right;
 }
 
 // TEXT STYLES

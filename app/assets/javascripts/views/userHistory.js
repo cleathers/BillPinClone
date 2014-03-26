@@ -35,6 +35,7 @@ BillPinClone.Views.UserHistory = Backbone.View.extend({
 
     var splits = [];
     BillPinClone.splits.each(function (split) {
+    debugger
       var posSplits = split.attributes.pos_splits,
           negSplits = split.attributes.neg_splits;
 
@@ -44,7 +45,7 @@ BillPinClone.Views.UserHistory = Backbone.View.extend({
         }
       });
       _.each(negSplits, function (split) {
-        if (split['user_id'] == view.friend_id) {
+        if (split['friend_id'] == view.friend_id) {
           splits.push(split);
         }
       });
