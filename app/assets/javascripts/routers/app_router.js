@@ -33,6 +33,14 @@ BillPinClone.Routers.AppRouter = Backbone.Router.extend({
     });
   },
 
+  record: function () {
+    var recordView = new BillPinClone.Views.RecordPayment({
+      model: new BillPinClone.Model.Split()
+    });
+
+    this._swapViews(recordView);
+  },
+
   showSplit: function (split_id) {
     var view = this;
 

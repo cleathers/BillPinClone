@@ -5,6 +5,7 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
 
   initialize: function (options) {
     BillPinClone.friends.fetch();
+    this.listenTo(BillPinClone.friends, 'sync', this.render);
   },
   
   events: {
@@ -30,7 +31,10 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
       var payerEmail = 'I'
     } else {
       var newPayer = BillPinClone.friends.get(payerId);
-      var payerEmail = newPayer.escape('email');
+      debugger
+      if (newPayer) {
+        var payerEmail = newPayer.escape('email');
+      }
     }
 
     if (isNaN(splitAmt) || !splitAmt) {

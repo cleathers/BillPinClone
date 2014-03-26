@@ -7,7 +7,6 @@ $highlightGrey: #eee;
 $borderColor: #aaa;
 $base-color: #fafafa;
 
-
 // BUTTONS
 .btn-brown {
   background-color: $brown;
@@ -30,6 +29,16 @@ $base-color: #fafafa;
 }
 
 // FORMS 
+.bordered {
+  border: 1px solid $grey;
+  border-radius: 5px 5px 0 0;
+}
+
+.padded {
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
 .form-control:focus {
   border-color: $orange;
   outline: 0;
@@ -97,6 +106,10 @@ h1.header {
   text-align: center;
 }
 
+.bottom-row {
+  margin-top: 20px;
+}
+
 .user-row {
   border-bottom: 1px solid $borderColor;
   margin-top: 10px;
@@ -109,6 +122,10 @@ h1.header {
 
 .icon-bronw{
   color: $brown;
+}
+
+// IMAGE
+.display-photo {
 }
 
 // MODALS
@@ -159,6 +176,14 @@ h1.header {
 
 .negative {
   color: rgb(230, 152, 48);
+}
+
+.right {
+  text-align: right;
+}
+
+.left {
+  text-align: left;
 }
 
 // USERS LIST

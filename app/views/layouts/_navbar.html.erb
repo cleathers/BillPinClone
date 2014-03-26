@@ -14,8 +14,6 @@
         <% if user_signed_in? %> 
           <li><a href='#' id='home'>Home</a></li>
           <li><a href='#/history'>History</a></li>
-        <% else %>
-          <li><a href='#'>Home</a></li>
         <% end %>
       </ul>
       <% if user_signed_in? %>
@@ -25,24 +23,11 @@
           <input type='hidden' name='_method' value='delete'>
           <button class='btn btn-brown'>Sign Out</button> 
         </form>
-      <% else %>
-        <%= render partial: 'layouts/guest_user' %>
-        <div class='navbar-form navbar-right'>
-
-          <button class='btn btn-brown' data-toggle='modal' 
-                  data-target='#log-in-modal'>Log In</button> 
-
-          <button class='btn btn-brown' data-toggle='modal'
-                  data-target='#sign-up-modal'>Sign Up</button>
-
-        </div>
       <% end %>
 
     </div><!-- /.collapse.navbar-collapse -->
   </div><!-- /.container-fluid -->
 
   <!-- modal partials -->
-  <%= render partial: 'layouts/sign_up_modal' %>
-  <%= render partial: 'layouts/log_in_modal' %>
 
 </nav>

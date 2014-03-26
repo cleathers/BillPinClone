@@ -14,13 +14,16 @@ BillPinClone.Views.ShowSplit = Backbone.View.extend({
     // sets split to similar objs. depending up whether it came from the db or a redirect
     if (view.model.attributes.split) {
       var split = view.model.attributes.split;
+      var receipt_photo = view.model.attributes.receipt_photo;
     } else if ( view.model.attributes.payerId ) {
       var split = view.model.attributes;
+      var receipt_photo = view.model.attributes.receipt_photo;
     }
 
     var renderedContent = view.template({
       split: split,
-      users: view.model.attributes.users
+      users: view.model.attributes.users,
+      receipt_photo: receipt_photo
     });
 
     view.$el.html(renderedContent);
