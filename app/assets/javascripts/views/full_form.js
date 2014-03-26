@@ -74,8 +74,15 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
 
 
       // run a fetch so the other view which isn't even displayed at this point will update.
-      BillPinClone.splits.create(formData, {wait: true});
-      BillPinClone.splits.fetch();
+      BillPinClone.splits.create(formData, {
+        wait: true,
+        success: function (model) {
+          var route = 'split/' + model.id;
+          Backbone.history.navigate(route, {trigger: true});
+        }
+      });
+
+
     }
   },
 

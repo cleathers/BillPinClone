@@ -1,9 +1,13 @@
 <div class="jumbotron col-xs-8 col-xs-offset-2">
   <% if (users) { %>
     <% _.each(users, function(user) { %>
-      <div class='row'>
+      <div class='row user-row'>
         <div class='col-xs-9'>
-          <p><%= BillPinClone.friends.get(user['user_id']).escape('email') %></p>
+          <% if (user['userId']) { %>
+            <p><%= BillPinClone.friends.get(user['userId']).escape('email') %></p>
+          <% } else if (user['user_id']) { %>
+            <p><%= BillPinClone.friends.get(user['user_id']).escape('email') %></p>
+          <% } %>
         </div>
         <div class='col-xs-3'>
           <p>$ <%= parseFloat(user['amt']).toFixed(2) %></p>
@@ -21,8 +25,8 @@
         <p><%= BillPinClone.friends.get(split['payer_id']).get('email') %> paid </p>
         <h3>$ <%= parseFloat(split['total_amt']).toFixed(2) %></h3>
       </div>
-      <% if (picture) { %>
-        <img src='<%= picture %>' >
+      <% if (split.receipt_photo) { %>
+        <img src='<%= split.receipt_photo %>' >
       <% }  %>
     <% } %>
   </div>

@@ -2,6 +2,7 @@ BillPinClone.Views.ShowSplit = Backbone.View.extend({
   
   initialize: function (options) {
     this.listenTo(this.model, 'sync', this.render);
+    this.listenTo(BillPinClone.friends, 'sync', this.render);
   },
 
   template: JST['show_split'],
@@ -9,9 +10,16 @@ BillPinClone.Views.ShowSplit = Backbone.View.extend({
   render: function () {
     var view = this;
 
+    debugger
+    // sets split to similar objs. depending up whether it came from the db or a redirect
+    if (view.model.attributes.split) {
+      var split = view.model.attributes.split;
+    } else if ( view.model.attributes.payerId ) {
+      var split = view.model.attributes;
+    }
+
     var renderedContent = view.template({
-      split: view.model.attributes.split,
-      picture: view.model.attributes.receipt_photo,
+      split: split,
       users: view.model.attributes.users
     });
 
