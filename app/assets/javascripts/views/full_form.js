@@ -14,7 +14,7 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
     'click #shared-equally': 'shareEqually',
     'click .close': 'removeUserFromSplit',
     'change #split-receipt': 'handleFile',
-    'keyup .split-amt': 'checkValid',
+    'keyup .split-amt': 'checkAmounts',
     'submit form': 'buildSplit'
   },
 
@@ -66,14 +66,10 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
 
   buildSplit: function (event) {
     event.preventDefault();
-    if ($('.user-split-details').length == 1) {
-      $('#warnings').html('Sorry, you can\'t post a split with just yourself');
-    } else {
+    if (this.checkValid()) {
       var formData = $(event.target).serializeJSON().split;
       formData['receipt_photo'] = this._splitPic;
 
-
-      // run a fetch so the other view which isn't even displayed at this point will update.
       BillPinClone.splits.create(formData, {
         wait: true,
         success: function (model) {
@@ -81,8 +77,6 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
           Backbone.history.navigate(route, {trigger: true});
         }
       });
-
-
     }
   },
 
@@ -94,10 +88,23 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
   },
 
   checkValid: function (event) {
-    this.checkUserInputs();
+    if ($('.user-split-details').length == 1) {
+      $('#warnings').html('Sorry, we can\'t split a bill between one person');
+      return false;
+      
+    } else if ( $('#split-amt').val() == '' ){
+      $('#warnings').html('Did you mean to enter an amount?');
+      return false;
+
+    } else if (parseFloat($('#split-amt').val()).toFixed(2) == '0.00') {
+      $('#warnings').html('Sorry, we can\'t split 0');
+      return false;
+    }
+
+    return true;
   },
 
-  checkUserInputs: function () {
+  checkAmounts: function () {
     var splitAmts = $('.split-amt');
     var totalAmt = $('#split-amt').val();
     var total = parseFloat(0);
