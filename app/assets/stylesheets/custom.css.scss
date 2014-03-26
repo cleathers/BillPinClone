@@ -5,6 +5,7 @@ $teal: rgb(111, 193, 216);
 $grey: rgb(221, 221, 221);
 $highlightGrey: #eee;
 $borderColor: #aaa;
+$base-color: #fafafa;
 
 
 // BUTTONS
@@ -74,7 +75,16 @@ body {
 }
 
 p {
-  font-size: 16px;
+  font-size: 18px;
+}
+
+h1.header {
+  letter-spacing: 2px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 15px;
 }
 
 
@@ -114,6 +124,7 @@ p {
 
 .navbar-default {
   background-color: $orange;
+  margin-bottom: 30px;
 }
 
 .navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > li > a.active:hover {
@@ -148,4 +159,16 @@ p {
 
 .negative {
   color: rgb(230, 152, 48);
+}
+
+// USERS LIST
+.user-list {
+  overflow: scroll;
+  height: 225px;
+  background-color: $teal;
+  padding: 5px 0 5px 0;
+  border-radius: 3px;
+}
+.user-list > li > a{
+  border-radius: 0;
 }

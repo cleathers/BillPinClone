@@ -2,7 +2,6 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
   
   template: JST['fullForm'],
   userTemplate: JST['fullForm_userSplit'],
-  className: 'row',
 
   initialize: function (options) {
     BillPinClone.friends.fetch();
@@ -27,6 +26,13 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
     var splitAmt = $('#split-amt').val();
     var totalAmt = $('#split-amt').val();
 
+    if (parseInt(payerId) == BillPinClone.current_user.id) {
+      var payerEmail = 'I'
+    } else {
+      var newPayer = BillPinClone.friends.get(payerId);
+      var payerEmail = newPayer.escape('email');
+    }
+
     if (isNaN(splitAmt) || !splitAmt) {
       splitAmt = parseFloat('0');
       totalAmt = parseFloat('0');
@@ -39,7 +45,7 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
       value: parseFloat(splitAmt).toFixed(2),
       splitDes: $('#split-des').val(),
       payerId: payerId,
-      payerEmail: BillPinClone.friends.getOrFetch(payerId).get('email')
+      payerEmail: payerEmail
     }));
     
     return this;
@@ -82,9 +88,15 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
 
   changePayer: function (event) {
     var payerId = $(event.target).val();
-    var newPayer = BillPinClone.friends.get(payerId);
+    debugger
+    if (parseInt(payerId) == BillPinClone.current_user.id) {
+      $('#split-payer-display').html('I paid');
+    } else {
+      var newPayer = BillPinClone.friends.get(payerId);
+      $('#split-payer-display').html(newPayer.escape('email') + ' paid');
+    }
+
     $('#split-payer-input').attr('value', payerId);
-    $('#split-payer-display').html(newPayer.escape('email') + ' paid');
   },
 
   checkValid: function (event) {
@@ -96,6 +108,10 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
       $('#warnings').html('Did you mean to enter an amount?');
       return false;
 
+    } else if ( isNaN($('#split-amt').val())) {
+      $('#warnings').html('Please enter a number');
+      return false;
+      
     } else if (parseFloat($('#split-amt').val()).toFixed(2) == '0.00') {
       $('#warnings').html('Sorry, we can\'t split 0');
       return false;
@@ -164,7 +180,7 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
     }
 
     $(hiddenInput).attr('value', value);
-    $(preview).html(value);
+    $(preview).text(value);
   },
 
   removeUserFromSplit: function (event) {

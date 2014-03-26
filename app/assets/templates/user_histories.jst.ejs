@@ -1,9 +1,9 @@
 <% 'REMOVE ME' %>
 <h3><%= friend.escape('email') %></h3>
 <% if (total > 0) { %>
-  <p>owes you <%= total %></p>
+  <p>owes you $ <%= parseFloat(total).toFixed(2) %></p>
 <% } else if (total < 0 ) { %>
-  <p>you owe <%= total * -1 %></p>
+  <p>you owe $ <%= parseFloat(total * -1).toFixed(2) %></p>
 <% } else { %>
   <p>You two are even as a well built floor</p>
 <% } %>
@@ -18,9 +18,9 @@
     <% _.each(splits, function (split) { %>
       <tr data-split-id='<%= split['split_id'] %>'>
         <% if (split['friend_id'] == BillPinClone.current_user.id) { %>
-          <td class="positive"><%= split['amt'] %></td>
+          <td class="positive">$ <%= parseFloat(split['amt']).toFixed(2) %></td>
         <% } else { %>
-          <td class="negative"><%= split['amt'] %></td>
+          <td class="negative">$ <%= parseFloat(split['amt']).toFixed(2) %></td>
         <% } %>
         <td><%= histories.get(split['split_id']).escape('des') %></td>
         <td><%= split['created_at'] %></td>

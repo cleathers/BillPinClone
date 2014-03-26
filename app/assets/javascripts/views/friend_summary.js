@@ -1,6 +1,7 @@
 BillPinClone.Views.FriendSummaries = Backbone.View.extend({
 
   initialize: function (options) {
+    BillPinClone.splits.fetch();
     this.listenTo(BillPinClone.splits, 'sync add', this.render);
     this.positives = {};
     this.negatives = {};
@@ -35,17 +36,17 @@ BillPinClone.Views.FriendSummaries = Backbone.View.extend({
   },
 
   posSum: function () {
-    var sum = 0;
+    var sum = parseFloat(0);
     _.values(this.positives).forEach(function (num) {
-      sum += parseInt(num);
+      sum += parseFloat(num);
     });
     return sum;
   },
 
   negSum: function () {
-    var sum = 0;
+    var sum = parseFloat(0);
     _.values(this.negatives).forEach(function (num) {
-      sum += parseInt(num);
+      sum += parseFloat(num);
     });
     return sum;
   },
@@ -63,17 +64,17 @@ BillPinClone.Views.FriendSummaries = Backbone.View.extend({
 
       _.each(posSplits, function(posSplit) {
         if ( view.positives[posSplit['user_id']] ) {
-          view.positives[posSplit['user_id']] += parseInt(posSplit['amt']);
+          view.positives[posSplit['user_id']] += parseFloat(posSplit['amt']);
         } else {
-          view.positives[posSplit['user_id']] = parseInt(posSplit['amt']);
+          view.positives[posSplit['user_id']] = parseFloat(posSplit['amt']);
         }
       });
 
       _.each(negSplits, function(negSplit) {
         if ( view.negatives[negSplit['friend_id']] ) {
-          view.negatives[negSplit['friend_id']] += parseInt(negSplit['amt']);
+          view.negatives[negSplit['friend_id']] += parseFloat(negSplit['amt']);
         } else {
-          view.negatives[negSplit['friend_id']] = parseInt(negSplit['amt']);
+          view.negatives[negSplit['friend_id']] = parseFloat(negSplit['amt']);
         }
       });
 

@@ -2,7 +2,7 @@
   <table class="table table-striped table-history">
     <tr>
       <th class='positive'>FRIENDS OWE ME</th>
-      <th class='positive display-amt'>$<%= posSum %>.00</th>
+      <th class='positive display-amt'>$ <%= parseFloat(posSum).toFixed(2) %></th>
     </tr>
     <% _.each(positives, function(amt, user_id) { %>
       <tr data-user-id='<%= user_id %>'>
@@ -17,7 +17,7 @@
   <table class="table table-striped table-history">
     <tr>
       <th class='negative'>I OWE FRIENDS</th>
-      <th class='negative display-amt'>$<%= negSum %>.00</th>
+      <th class='negative display-amt'>$ <%= parseFloat(negSum).toFixed(2) %></th>
     </tr>
   <% _.each(negatives, function(amt, user_id) { %>
       <tr data-user-id='<%= user_id %>'>
@@ -31,7 +31,7 @@
 <% if (_.isEmpty(negatives) && _.isEmpty(positives)) { %>
   <div class='col-md-12 empty-page'>
     <h3>Welcome to BillPinClone</h3>
-    <p>This is a clone of Bill Pin.</p>
+    <p>This is a clone of <a class='orange' href='www.billpin.com'>Bill Pin</a>.</p>
     <p>The application allows you to keep track of bills paid by you or a friend and calculates the net difference between the two of you.</p>
     <p>You can split a bill with multiple users and keep pictues of the receipts.</p>
   </div>

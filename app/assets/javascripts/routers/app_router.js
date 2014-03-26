@@ -11,7 +11,9 @@ BillPinClone.Routers.AppRouter = Backbone.Router.extend({
     'user/:id': 'userHistory',
     'user/:id/': 'userHistory',
     'split/:split_id': 'showSplit',
-    'split/:split_id/': 'showSplit'
+    'split/:split_id/': 'showSplit',
+    'record': 'record',
+    'record/': 'record'
   },
 
   index: function() {
