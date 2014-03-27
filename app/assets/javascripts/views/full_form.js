@@ -9,7 +9,7 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
   },
   
   events: {
-    'click .user-list li': 'addUserToSplit',
+    'click .user-list': 'getUser',
     'click #split-by-amount': 'openSplits',
     'click #shared-equally': 'shareEqually',
     'click .close': 'removeUserFromSplit',
@@ -31,7 +31,6 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
       var payerEmail = 'I'
     } else {
       var newPayer = BillPinClone.friends.get(payerId);
-      debugger
       if (newPayer) {
         var payerEmail = newPayer.escape('email');
       }
@@ -51,20 +50,27 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
       payerId: payerId,
       payerEmail: payerEmail
     }));
+
+    if (newPayer) {
+      this.addUserToSplit(payerId);
+      this.removeUserFromUsersList(payerId);
+    }
     
     return this;
   },
 
   getUser: function (event) {
-    
+    debugger
+    var userId = event.target.parentElement.dataset.id;
+
+    this.removeUserFromUsersList(userId);
+    this.addUserToSplit(userId);
   },
 
-  addUserToSplit: function (event) {
+  addUserToSplit: function (userId) {
     // emptys out warnings label
     $('#warnings').empty();
 
-    var userId = event.currentTarget.dataset.id;
-    $(event.currentTarget).remove();
     var content = this.userTemplate({
       user: BillPinClone.friends.get(userId),
       numUsers: ($('.user-split-details').length)
@@ -205,6 +211,10 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
     $('.user-list').append($li);
 
     this.setValues();
+  },
+
+  removeUserFromUsersList: function(userId) {
+    $('.user-list').find("li[data-id=" + userId + "]").remove();
   },
 
   setValues: function () {

@@ -63,6 +63,8 @@ BillPinClone.Views.Index = Backbone.CompositeView.extend({
       $('#split-amt').val(splitVal);
       $('#split-des').val(splitDes);
       this.checkPayerForSwap(payer);
+
+      // if payer isn't current_user, adds them to split form
       
       $('.quick-form button').html('CANCEL ▴');
 
