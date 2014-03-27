@@ -63,6 +63,7 @@ BillPinClone.Views.Index = Backbone.CompositeView.extend({
       $('#split-amt').val(splitVal);
       $('#split-des').val(splitDes);
       this.checkPayerForSwap(payer);
+      
       $('.quick-form button').html('CANCEL ▴');
 
     } else if (this._subviews['#content'][0] == this.fullForm) {

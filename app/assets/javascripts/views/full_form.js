@@ -55,6 +55,10 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
     return this;
   },
 
+  getUser: function (event) {
+    
+  },
+
   addUserToSplit: function (event) {
     // emptys out warnings label
     $('#warnings').empty();
@@ -228,6 +232,7 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
       $(userInput).removeClass('hidden');
     });
     this.setValues();
+    this.checkAmounts();
   }
 
 });
