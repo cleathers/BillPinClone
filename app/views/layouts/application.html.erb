@@ -9,6 +9,10 @@
 </head>
 <body>
 
+<% unless user_signed_in? %>
+  <%= render partial: 'layouts/parallax' %>
+<% end %>
+
 <%= render partial: 'layouts/navbar' %>
 <%= render partial: 'layouts/flash_messages' %>
 
@@ -16,6 +20,7 @@
   <%= yield %>
 </div>
 
-</body>
 <%= render partial: 'helpers/parallax' %>
+</body>
 </html>
+<script src='/parallax.js'></script>
