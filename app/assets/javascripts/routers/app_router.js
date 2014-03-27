@@ -2,6 +2,7 @@ BillPinClone.Routers.AppRouter = Backbone.Router.extend({
 
   initialize: function ( options ) {
     this.$rootEl = options['$rootEl'];
+    $('#home').on('click', this.index.bind(this));
   },
 
   routes: {

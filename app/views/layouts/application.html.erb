@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<% unless user_signed_in? %>
+<% if current_page?(root_url)  && !user_signed_in? %>
   <%= render partial: 'layouts/parallax' %>
 <% end %>
 
@@ -23,4 +23,6 @@
 <%= render partial: 'helpers/parallax' %>
 </body>
 </html>
-<script src='/parallax.js'></script>
+<% if current_page?(root_url) %>
+  <script src='/parallax.js'></script>
+<% end %>

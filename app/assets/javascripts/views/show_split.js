@@ -10,7 +10,6 @@ BillPinClone.Views.ShowSplit = Backbone.View.extend({
   render: function () {
     var view = this;
 
-    debugger
     // sets split to similar objs. depending up whether it came from the db or a redirect
     if (view.model.attributes.split) {
       var split = view.model.attributes.split;

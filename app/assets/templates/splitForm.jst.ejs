@@ -15,7 +15,7 @@
           <% if (user.id == current_user.id) { %>
             selected="selected"
           <% } %>
-        ><%= user.get('email') %></option>
+        ><%= (user.id == current_user.id) ? user.get('email') + ' (me)': user.get('email') %></option>
       <% }); %>
     </select>
   </div>
