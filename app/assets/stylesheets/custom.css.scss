@@ -31,12 +31,13 @@ $base-color: #fafafa;
 // FORMS 
 .bordered {
   border: 1px solid $grey;
-  border-radius: 5px 5px 0 0;
+  border-radius: 5px;
 }
 
 .padded {
   padding-bottom: 15px;
   margin-bottom: 15px;
+  background-color: $base-color;
 }
 
 .form-control:focus {
@@ -89,6 +90,13 @@ p {
 
 h1.header {
   letter-spacing: 2px;
+}
+
+h1.parallax-h1 {
+  font-size: 45px;
+  position: relative;
+  text-align: center;
+  color: $orange;
 }
 
 .header {

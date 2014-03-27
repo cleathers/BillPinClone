@@ -1,7 +1,60 @@
 #scene {
   position: absolute;
 }
+#restaurant {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
 
-#waiter {
-  top: -305px;
+#first_transparency {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.second_transparency {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+#scene-left {
+  position: absolute;
+}
+
+#waiter-left {
+  position: relative;
+  top: 180px;
+  left: -290px;
+}
+
+#scene-right {
+  position: absolute;
+}
+
+#waiter-right {
+  position: relative;
+  top: 260px;
+  right: -900px;
+}
+
+#scene-burger {
+  position: absolute;
+}
+
+#burger {
+  position: relative;
+  top: 115px;
+  left: 160px;
+}
+
+#scene-lobster {
+  position: absolute;
+}
+
+#lobster {
+  position: relative;
+  top: 70px;
+  right: -925px;
 }

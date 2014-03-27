@@ -1,8 +1,43 @@
-<ul id='scene' data-calibrate-y="true">
+<ul id='scene' data-calibrate-y="false" data-invert-x="true" data-invert-y="false" 
+               data-scalar-x='16' data-friction-x="0.6" data-friction-y="0.4"
+               data-scalar-y='5'>
   <li class='layer' id='restaurant' data-depth='0.00'>
-    <img src='<%= image_path("Restaurant-Scene.jpg") %>'>
+    <img src='<%= image_path("scene.png") %>'>
   </li>
-  <li class='layer' id='waiter' data-depth='1.00'>
-    <img src='<%= image_path("waiter-burger.png") %>'>
+  <li class='layer' id='first_transparency' data-depth='0.00'>
+    <img src='<%= image_path("first_transparency.png") %>'>
+  </li>
+</ul>
+
+<ul id='scene-left' data-invert-y="false" data-invert-x="false"
+                    data-scalar-x="7" data-friction-x='0.7'>
+  <li class='layer' id='waiter-left'  data-depth='0.35'>
+    <img src='<%= image_path("waiter_left.png") %>'>
+  </li>
+  <li class='layer second_transparency' data-depth='0.00'>
+    <img src='<%= image_path("second_transparency.png") %>'>
+  </li>
+</ul>
+
+<ul id='scene-right' data-invert-y="true" data-invert-x"true" data-friction-y='0.6'>
+  <li class='layer' id='waiter-right' data-depth='0.50'>
+    <img src='<%= image_path("waiter_right.png") %>'>
+  </li>
+  <li class='layer second_transparency' data-depth='0.00'>
+    <img src='<%= image_path("second_transparency.png") %>'>
+  </li>
+</ul>
+
+<ul id='scene-burger' data-invert-x="false" data-invert-y="true"
+                data-scalar-y="15">
+  <li class='layer' id='burger' data-depth='0.90'>
+    <img src='<%= image_path("burger.png") %>'>
+  </li>
+</ul>
+
+<ul id='scene-lobster' data-invert-x="true" data-invert-y="false"
+                data-scalar-y="15">
+  <li class='layer' id='lobster' data-depth='0.75'>
+    <img src='<%= image_path("lobster.png") %>'>
   </li>
 </ul>
