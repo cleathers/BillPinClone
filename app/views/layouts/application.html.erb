@@ -7,11 +7,13 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => false %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body   >
 
+<div class='wrapper'>
 <% if current_page?(root_url)  && !user_signed_in? %>
   <%= render partial: 'layouts/parallax' %>
 <% end %>
+</div>
 
 <%= render partial: 'layouts/navbar' %>
 <%= render partial: 'layouts/flash_messages' %>

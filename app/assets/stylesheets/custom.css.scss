@@ -75,6 +75,10 @@ $base-color: #fafafa;
   border-bottom: 1px solid $grey;
 }
 
+#log-in, #sign-up, #guest-user {
+  text-align: center;
+}
+
 // FONTS
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -125,6 +129,10 @@ h1.parallax-h1 {
 .user-row {
   border-bottom: 1px solid $borderColor;
   margin-top: 10px;
+}
+
+#please-expand {
+  text-align: center;
 }
 
 // ICONS

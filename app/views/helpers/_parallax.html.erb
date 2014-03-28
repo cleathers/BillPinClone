@@ -1,15 +1,42 @@
 <script>
   $(function () {
-    var scene = document.getElementById('scene');
-    var sceneLeft = document.getElementById('scene-left');
-    var sceneRight = document.getElementById('scene-right');
-    var sceneLobster = document.getElementById('scene-lobster');
-    var sceneBurger = document.getElementById('scene-burger');
+    var wrapper = $('.wrapper');
+    var $body = $(document.body);
+    var $pleaseExpand = $('<p>');
+    $pleaseExpand.html('Please expand the page for the full BillPinClone experience.'); 
+    $pleaseExpand.attr('id', 'please-expand');
+    
 
-    var parallax = new Parallax(scene);    
-    var parallax1 = new Parallax(sceneLeft);    
-    var parallax2 = new Parallax(sceneRight);    
-    var parallax3 = new Parallax(sceneLobster);
-    var parallax4 = new Parallax(sceneBurger);
+    if (document.body.offsetWidth < 1400) {
+      wrapper.remove();
+      $('.col-md-4').after($pleaseExpand);
+    } else {
+      var scene = document.getElementById('scene');
+      var sceneLeft = document.getElementById('scene-left');
+      var sceneRight = document.getElementById('scene-right');
+      var sceneLobster = document.getElementById('scene-lobster');
+      var sceneBurger = document.getElementById('scene-burger');
+
+      var parallax = new Parallax(scene);    
+      var parallax1 = new Parallax(sceneLeft);    
+      var parallax2 = new Parallax(sceneRight);    
+      var parallax3 = new Parallax(sceneLobster);
+      var parallax4 = new Parallax(sceneBurger);
+    }
+
+    $(window).resize(function () {
+      debugger
+
+      if (document.body.offsetWidth < 1400) {
+        if ( $body.find(wrapper)) {
+          wrapper.remove();
+          $('.col-md-4').after($pleaseExpand);
+        }
+      } else {
+        $body.remove('#please-expand');
+        $body.prepend(wrapper);
+      }
+    });
+
   });
 </script>

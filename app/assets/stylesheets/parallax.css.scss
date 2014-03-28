@@ -1,16 +1,40 @@
+.wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.wrapper > ul {
+  width: 100%;
+}
+
+.wrapper > ul > li {
+}
+
+.wrapper > ul > li > img {
+}
+
 #scene {
+  width: 100%;
   position: absolute;
 }
 #restaurant {
+  width: 100%;
   position: absolute;
   left: 0;
   top: 0;
 }
+#restaurant img {
+  width: 100%;
+}
 
 #first_transparency {
+  width: 100%;
   position: absolute;
   left: 0;
   top: 0;
+}
+#first_transparency img {
+  width: 100%;
 }
 
 .second_transparency {
@@ -18,43 +42,67 @@
   left: 0;
   top: 0;
 }
+.second_transparency img {
+  width: 100%;
+}
 
 #scene-left {
   position: absolute;
+  width: 100%;
 }
 
 #waiter-left {
   position: relative;
+  width: 50% !important;
   top: 180px;
   left: -290px;
 }
 
+#waiter-left img {
+  width: 100%;
+  overflow: hidden;
+}
+
 #scene-right {
   position: absolute;
+  width: 100%;
 }
 
 #waiter-right {
   position: relative;
-  top: 260px;
+  width: 45% !important;
+  top: 215px;
   right: -900px;
+}
+
+#waiter-right img {
+  width: 100%;
+  overflow: hidden;
 }
 
 #scene-burger {
   position: absolute;
+  width: 100%;
 }
 
 #burger {
   position: relative;
+  width: 35% !important;
   top: 115px;
   left: 160px;
 }
 
+#burger img {
+  width: 100%;
+}
+
 #scene-lobster {
   position: absolute;
+  width:50%;
 }
 
 #lobster {
   position: relative;
   top: 70px;
-  right: -925px;
+  right: -905px;
 }
