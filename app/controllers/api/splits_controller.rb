@@ -2,7 +2,6 @@ class Api::SplitsController < ApplicationController
   before_filter :authenticate_user!
 
   def create
-    p "CURRENT_USER #{current_user.email}"
     # creates new split object
     new_split = Split.new()
     new_split.des = split_params['des']

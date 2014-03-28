@@ -60,7 +60,6 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
   },
 
   getUser: function (event) {
-    debugger
     var userId = event.target.parentElement.dataset.id;
 
     this.removeUserFromUsersList(userId);

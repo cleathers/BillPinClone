@@ -1,11 +1,11 @@
 <% 'REMOVE ME' %>
-<h3><%= friend.escape('email') %></h3>
+<h3 class='gotham'><%= friend.escape('email') %></h3>
 <% if (total > 0) { %>
-  <p>owes you $ <%= parseFloat(total).toFixed(2) %></p>
+  <p class='positive'>owes you $ <%= parseFloat(total).toFixed(2) %></p>
 <% } else if (total < 0 ) { %>
-  <p>you owe $ <%= parseFloat(total * -1).toFixed(2) %></p>
+  <p class='negative'>I owe $ <%= parseFloat(total * -1).toFixed(2) %></p>
 <% } else { %>
-  <p>You two are even as a well built floor</p>
+  <p class='ml_10 font-12pt bp-dark-blue'>You two are even as a well built floor</p>
 <% } %>
 
 <% if (!(_.isEmpty(splits))) { %>

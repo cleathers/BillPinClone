@@ -29,6 +29,7 @@ gem 'ejs'
 gem 'figaro'
 gem 'paperclip'
 gem 'aws-sdk'
+gem 'thin'
 
 
 group :development do

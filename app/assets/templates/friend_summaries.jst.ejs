@@ -5,6 +5,7 @@
       <th class='positive display-amt'>$ <%= parseFloat(posSum).toFixed(2) %></th>
     </tr>
     <% _.each(positives, function(amt, user_id) { %>
+      <% debugger %>
       <tr data-user-id='<%= user_id %>'>
         <td><%= users.get(user_id).escape('email')  %></td>
         <td class='display-amt'>$ <%= parseFloat(amt).toFixed(2) %></td>
