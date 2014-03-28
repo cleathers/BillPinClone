@@ -41,6 +41,9 @@ class ApplicationController < ActionController::Base
     u = User.create(email: "guest_#{Time.now.to_i}#{rand(99)}@ex.com")
     u.save!(validate: false)
     session[:guest_user_id] = u.id
+    seed_data(u)
     u
   end
+
+
 end

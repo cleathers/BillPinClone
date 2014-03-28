@@ -3,7 +3,7 @@ class Api::SplitsController < ApplicationController
 
   def create
     # creates new split object
-    new_split = Split.new()
+    new_split = Split.new
     new_split.des = split_params['des']
     new_split.total_amt = split_params['totalAmt']
     new_split.payer_id = split_params['payerId']
@@ -37,8 +37,8 @@ class Api::SplitsController < ApplicationController
           user_split.user_id = user['userId']
 
           user_split.save!
-        end # end transaction
-      end 
+        end
+      end # end transaction
     
     rescue ActiveRecord::RecordInvalid => invalid
       p 'ERROR ERROR ERROR IN API/SPLITS CONTROLLER # CREATE'
