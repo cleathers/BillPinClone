@@ -1,4 +1,4 @@
-== README
+# BillPinClone
 
 Use Rails 4 and Ruby V. 1.9.3
 
