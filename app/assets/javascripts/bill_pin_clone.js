@@ -8,6 +8,7 @@ window.BillPinClone = {
     BillPinClone.friends = new BillPinClone.Collections.Friends();
 
     BillPinClone.friends.fetch({
+      async: false,
       success: function (col) {
         BillPinClone.current_user = col.get(options['current_user_id']);
       }
