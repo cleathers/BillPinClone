@@ -85,8 +85,8 @@ BillPinClone.Views.FullForm = Backbone.View.extend({
 
   buildSplit: function (event) {
     event.preventDefault();
-    $('.btn-orange.glyphicon-pin').addClass('spinner');
     if (this.checkValid()) {
+      $('.btn-orange.glyphicon-pin').addClass('spinner');
       var formData = $(event.target).serializeJSON().split;
       formData['receipt_photo'] = this._splitPic;
 
