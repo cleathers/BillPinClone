@@ -1,5 +1,9 @@
 <% if user_signed_in? %>
   <div id='app'></div>
+  <div id='loader' class='center'>
+    <i class='glyphicon glyphicon-cog spinner'></i>
+    <div class='row'>Initializing...</div>
+  </div>
   <script type='text/javascript' charset='utf-8'>
     $(BillPinClone.initialize({current_user_id: <%= current_user.id %>}));
   </script>

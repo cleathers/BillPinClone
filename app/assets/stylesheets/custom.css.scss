@@ -131,7 +131,7 @@ h1.parallax-h1 {
   margin-top: 10px;
 }
 
-#please-expand {
+.center {
   text-align: center;
 }
 
@@ -142,6 +142,35 @@ h1.parallax-h1 {
 
 .icon-bronw{
   color: $brown;
+}
+
+.spinner {
+  font-size: 250px;
+  -webkit-animation: spin 4s linear infinite;
+  -moz-animation: spin 4s linear infinite;
+  -o-animation: spin 4s linear infinite;
+  -mz-animation: spin 4s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  from { -webkit-transform: rotate(0deg); }
+  50% { -webkit-transform: rotate(180deg); }
+  to { -webkit-transform: rotate(360deg); }
+}
+@-moz-keyframes spin {
+  from { -moz-transform: rotate(0deg); }
+  50% { -moz-transform: rotate(180deg); }
+  to { -moz-transform: rotate(360deg); }
+}
+@-o-keyframes spin {
+  from { -o-transform: rotate(0deg); }
+  50% { -o-transform: rotate(180deg); }
+  to { -o-transform: rotate(360deg); }
+}
+@-ms-keyframes spin {
+  from { -ms-transform: rotate(0deg); }
+  50% { -ms-transform: rotate(180deg); }
+  to { -ms-transform: rotate(360deg); }
 }
 
 // IMAGE

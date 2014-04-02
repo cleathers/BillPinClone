@@ -16,9 +16,11 @@ window.BillPinClone = {
 
     BillPinClone.splits.fetch({
       success: function () {
+        $('#loader').remove();
         new BillPinClone.Routers.AppRouter({
           $rootEl: $("#app")
         });
+
       Backbone.history.start();
       }
     });
